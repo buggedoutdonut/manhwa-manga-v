@@ -1,0 +1,132 @@
+.topHeader{
+    display:flex;
+    flex:1;
+    flex-direction: row;
+    vertical-align: middle;
+    align-items: center;
+    justify-content:space-between;
+    box-shadow: 1px 1px 60px 5px black;
+    padding:30px;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.logo{
+    width:5rem;
+}
+
+.menuButton{
+    width:3rem;
+}
+
+.menuButton img{
+    width:100%;
+}
+
+.menu{
+    width:0;
+    box-shadow: 1px 1px 60px 5px black;
+    background-color:white;
+    height:100%;
+    top:0;
+    right:0;
+    position:fixed;
+}
+
+.closeMenu{
+    top:0;
+    right:0;
+    border:0;
+    font-size:1.5rem;
+    background:none;
+    font-weight: bold;
+}
+
+.subMenu{
+    display:flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: start;
+    margin:auto;
+    padding:20px;
+}
+
+.subMenuButtons{
+    border:0;
+    font-weight:bold;
+    font-size:1rem;
+    margin:10px;
+    padding:5px;
+    border-radius: 5px;
+}
+
+.navContainer{
+    display:flex;
+    flex:1;
+    flex-direction: row;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: end;
+    gap:45px;
+    font-size:1rem;
+    font-weight: bold;
+}
+
+.logoContainer{
+    display:flex;
+    flex:1;
+    flex-direction: row;
+    vertical-align: middle;
+    align-items: center;
+    gap:15px;
+    font-size:1.2rem;
+    font-weight: bold;
+}
+
+.navContainer button{
+    border:0;
+    font-size:1rem;
+    font-weight: bold;
+    background:none;
+}
+
+.darkModeStatus{
+    color:red;
+}
+
+@keyframes darkModeOn{
+    from{
+        background-color: rgb(255, 255, 255);
+    }
+    to{
+        background-color: rgb(26, 26, 26);
+        color:white;
+    }
+}
+
+@keyframes darkModeOff{
+    from{
+        background-color: rgb(24, 24, 24);
+    }
+    to{
+        background-color: rgb(255, 255, 255);
+        color:black;
+    }
+}
+
+@keyframes openMenu{
+    from{
+        width:0;
+    }
+    to{
+        width:18rem;
+    }
+}
+
+@keyframes closeMenu{
+    from{
+        width:25rem;
+    }
+    to{
+        width:0;
+    }
+}
