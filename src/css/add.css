@@ -1,0 +1,28 @@
+.addContainer{
+    padding:25px;
+    width:30%;
+    margin:auto;
+    margin-top:80px;
+    height:20rem;
+    box-shadow:1px 1px 15px 2px black;
+    text-align: center;
+    background: url("../assets/add-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.addTitle{
+    border-bottom: 6px solid rgb(92, 89, 89);
+}
+
+input{
+    width:20rem;
+}
+
+.addButton{
+    display:block;
+    margin:auto;
+    margin-top:30px;
+    padding:20px;
+}

@@ -2,12 +2,13 @@ import "../css/layout.css"
 import logo from "../assets/logo.png"
 import { useEffect, useState } from "react"
 import menu from "../assets/menu.png"
-import { useNavigate } from "react-router"
+import { useNavigate, Link } from "react-router"
 
 export const Header = () => {
     const userName = localStorage.getItem("userName")
     const [darkMode,setDarkMode] = useState(false);
     const isLoggedIn = localStorage.getItem("isLoggedIn")
+    const checkAccess = localStorage.getItem("userAccess")
     const navigator = useNavigate()
 
     useEffect(()=>{
@@ -82,9 +83,15 @@ export const Header = () => {
                     <button className="subMenuButtons">⛉ Bookmarks</button>
                     <button className="subMenuButtons">👁 Recently Viewed</button>
                     <button className="subMenuButtons">𝄜 Request</button>
+                    <button className="subMenuButtons">✚ Add new title</button>
+                    <Link to="/addmember"><button className="subMenuButtons">👥 Add new user</button></Link>
                     <button className="subMenuButtons" onClick={logOut} id="logOut">⏻ Logout</button>
+                    <p className="accessText">★ {checkAccess.toUpperCase()}</p>
                 </div>
+                
+                
             </div>
+            
         </div>
         
     )

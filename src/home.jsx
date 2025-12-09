@@ -7,7 +7,7 @@ import { Footer } from "./layout/footer"
 
 export const Home = () =>{
     const userName = localStorage.getItem("userName")
-            
+    
     return(
         <>
             <Header />

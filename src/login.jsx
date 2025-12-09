@@ -4,16 +4,17 @@ import viteLogo from '/vite.svg'
 import './css/login.css'
 import { Navigate, redirect, useNavigate, useNavigation } from 'react-router'
 
+
 export const Login = () =>{
     const [name,setName] = useState("");
     const [pass,setPass] = useState("");
     const [access,setAccess] = useState("");
     let navigator = useNavigate()
     
-    const currentlyLoggedIn = localStorage.getItem("isLoggedIn")
-    useEffect(()=>{
-        currentlyLoggedIn == null ? console.log("") : setTimeout(navigator("/home"), 1500)
-    },[currentlyLoggedIn])
+    // const currentlyLoggedIn = localStorage.getItem("isLoggedIn")
+    // useEffect(()=>{
+    //     currentlyLoggedIn == null ? console.log("") : setTimeout(navigator("/home"), 1500)
+    // },[currentlyLoggedIn])
 
 
     const handleForm = async (e) =>{
@@ -26,7 +27,8 @@ export const Login = () =>{
         const url = "http://localhost:3000/login/"+encodedUsername+"/"+encodedPassword
         const response = await fetch(url)
         const parseResponse = await response.json()
-        
+        const checkAccess = parseResponse['access'][0]
+
         const loginUpdate = document.createElement("h4")
         if(parseResponse == 0){
             loginUpdate.textContent = "Incorrect username/password."
@@ -37,6 +39,7 @@ export const Login = () =>{
             loginUpdate.setAttribute("style","color:green")
             loginUpdate.setAttribute("id","update")
             setTimeout(() => navigator("/home"), 1500)
+            localStorage.setItem("userAccess",checkAccess["access"])
             localStorage.setItem("isLoggedIn",true)
             localStorage.setItem("userName",username)
 

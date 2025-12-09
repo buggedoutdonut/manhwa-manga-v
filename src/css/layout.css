@@ -93,6 +93,10 @@
     color:red;
 }
 
+.accessText{
+    margin-left:15px;
+}
+
 @keyframes darkModeOn{
     from{
         background-color: rgb(255, 255, 255);
