@@ -15,6 +15,14 @@ export const Header = () => {
         isLoggedIn == null? setTimeout(() => navigator("/"),500):console.log("")
     },[isLoggedIn])
 
+    useEffect(() =>{
+        const addNewTitle = document.getElementById("addNewTitle")
+        const addNewUser = document.getElementById("addNewUser")
+        if(checkAccess == "user"){
+            addNewTitle.style.display = "none"
+            addNewUser.style.display = "none"
+        }
+    })
 
     const DarkMode = () =>{
         const darkModeLabel = document.getElementById("darkModeLabel")
@@ -83,8 +91,8 @@ export const Header = () => {
                     <button className="subMenuButtons">⛉ Bookmarks</button>
                     <button className="subMenuButtons">👁 Recently Viewed</button>
                     <button className="subMenuButtons">𝄜 Request</button>
-                    <button className="subMenuButtons">✚ Add new title</button>
-                    <Link to="/addmember"><button className="subMenuButtons">👥 Add new user</button></Link>
+                    <Link to="/addtitle"><button className="subMenuButtons" id="addNewTitle">✚ Add new title</button></Link>
+                    <Link to="/addmember"><button className="subMenuButtons" id="addNewUser">👥 Add new user</button></Link>
                     <button className="subMenuButtons" onClick={logOut} id="logOut">⏻ Logout</button>
                     <p className="accessText">★ {checkAccess.toUpperCase()}</p>
                 </div>

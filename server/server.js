@@ -68,6 +68,19 @@ app.post('/addmember',(req,res)=>{
     })
 })
 
+app.post('/addtitle', (req,res) =>{
+    const {title,code,category,description,status,release,recent} = req.body
+    const lv = 0
+    const query = 'INSERT INTO "mDetailsv2" (name,code,category,description,status,"releaseDate","recentUpdate",likes,visits) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)'
+    connection.query(query,[title,code,category,description,status,release,recent,lv,lv],(err,result) =>{
+        if(err){
+            console.log(err.message)
+        } else {
+            res.end("Loe")
+        }
+    })
+})
+
 app.post('/try', (req,res) =>{
     console.log(req.body)
     const {name,code,category,status} = req.body

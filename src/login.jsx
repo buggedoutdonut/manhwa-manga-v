@@ -5,6 +5,7 @@ import './css/login.css'
 import { Navigate, redirect, useNavigate, useNavigation } from 'react-router'
 
 
+
 export const Login = () =>{
     const [name,setName] = useState("");
     const [pass,setPass] = useState("");
@@ -22,7 +23,7 @@ export const Login = () =>{
         const formData = new FormData(e.currentTarget)
         const username = formData.get('username')
         const password = formData.get('password')
-        const encodedUsername = encodeURIComponent(username)
+        const encodedUsername = encodeURIComponent(username.toLowerCase())
         const encodedPassword = encodeURIComponent(password)
         const url = "http://localhost:3000/login/"+encodedUsername+"/"+encodedPassword
         const response = await fetch(url)
@@ -55,6 +56,7 @@ export const Login = () =>{
     }
 
     return(
+      
             <div className="mainContainer">
                 <div className="loginFormContainer" id="form">
                 <h2>SIGN IN</h2>
@@ -65,5 +67,7 @@ export const Login = () =>{
                     </form>
                 </div>
             </div>
+            
+        
     )
 }
