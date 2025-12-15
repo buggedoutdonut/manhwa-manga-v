@@ -1,7 +1,9 @@
 const express = require("express")
 const app = express()
 const cors = require("cors")
-const { connect } = require("http2")
+const pupeteer = require("puppeteer");
+const fs = require("fs");
+
 const Pool = require('pg').Pool
 
 app.use(cors())
@@ -69,10 +71,10 @@ app.post('/addmember',(req,res)=>{
 })
 
 app.post('/addtitle', (req,res) =>{
-    const {title,code,category,description,status,release,recent} = req.body
+    const {title,code,category,description,status,release,recent,imageLink,chapters} = req.body
     const lv = 0
-    const query = 'INSERT INTO "mDetailsv2" (name,code,category,description,status,"releaseDate","recentUpdate",likes,visits) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)'
-    connection.query(query,[title,code,category,description,status,release,recent,lv,lv],(err,result) =>{
+    const query = 'INSERT INTO "mDetailsv2" (name,code,category,description,status,"releaseDate","recentUpdate",likes,visits,"imageLink",chapters) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)'
+    connection.query(query,[title,code,category,description,status,release,recent,lv,lv,imageLink,chapters],(err,result) =>{
         if(err){
             console.log(err.message)
         } else {
@@ -92,6 +94,41 @@ app.post('/try', (req,res) =>{
             console.log(result)
         }
     })
+})
+
+app.get('/getChapters/:title', async (req,res) =>{
+    const {title} = req.params
+    const ua = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.3"
+    const browser = await pupeteer.launch({headless:true})
+    const page = await browser.newPage()
+    await page.setUserAgent(ua)
+    await page.goto('https://mangahub.io/manga/'+title, {waitUntil:"domcontentloaded"})
+    const getChapters = await page.evaluate(() =>{
+        // select all span that has this specific class
+        const chapters = document.querySelectorAll('span[class="text-secondary _3D1SJ"]')
+        let ch = []
+
+        // loop through each item and take out their text-content then insert it into the array
+        chapters.forEach((chapter) =>{
+            const anotherSpan = chapter.textContent.slice(1)
+            if(ch.includes(anotherSpan)){
+               
+            } else {
+                ch.push(anotherSpan)
+            }
+            
+        })
+
+        return ch
+
+    })
+
+    // let data = new Array
+    // data = getChapters
+    // fs.writeFileSync('file.json', JSON.stringify(data))
+    await browser.close()
+
+    res.send(getChapters)
 })
 
 

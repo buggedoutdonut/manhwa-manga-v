@@ -6,6 +6,7 @@ import {BrowserRouter, Route,Routes} from 'react-router-dom'
 import { Home } from './home'
 import { AddMember } from './addMember'
 import { AddNewTitle } from './addTitle'
+import { Testing } from './test'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -15,6 +16,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/home" element={<Home/>} />
         <Route path="/addmember" element={<AddMember />} />
         <Route path="/addtitle" element={<AddNewTitle />} />
+        <Route path="/scrape" element={<Testing />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

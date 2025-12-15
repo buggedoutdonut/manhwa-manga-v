@@ -11,7 +11,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    color:white;
+    color:white; 
 }
 
 .addTitle{
@@ -47,7 +47,7 @@ input{
     width:30%;
     margin:auto;
     margin-top:80px;
-    height:50rem;
+    height:60rem;
     border-radius:10px;
     box-shadow:1px 1px 15px 2px black;
     text-align: center;
