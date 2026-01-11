@@ -3,8 +3,9 @@ const app = express()
 const cors = require("cors")
 const pupeteer = require("puppeteer");
 const fs = require("fs");
-const dotenv = require("dotenv").config()
-const { default: puppeteer } = require("puppeteer");
+const dotenv = require("dotenv").config();
+const chromium = require('chrome-aws-lambda');
+const puppeteer  = require("puppeteer-core");
 const {PGHOST,PGDATABASE,PGUSER,PGPASSWORD} = process.env
 
 const Pool = require('pg').Pool
@@ -107,8 +108,12 @@ app.post('/try', (req,res) =>{
 app.get('/getChapters/:title', async (req,res) =>{
     const {title} = req.params
     const ua = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.3"
-
-    const browser = await pupeteer.launch({headless:true})
+  
+    const browser = await pupeteer.launch({
+        args:[...chromium.args, "--no-sandbox", "--disable-setuid-sandbox"],
+        headless:true
+    })
+        
     const page = await browser.newPage()
     await page.setUserAgent(ua)
     await page.goto('https://mangahub.io/manga/'+title, {waitUntil:"domcontentloaded"})
@@ -155,9 +160,6 @@ app.get('/getChapters/:title', async (req,res) =>{
 
     })
 
-    // let data = new Array
-    // data = getChapters
-    // fs.writeFileSync('file.json', JSON.stringify(data))
     await browser.close()
 
     res.send(getChapters)
