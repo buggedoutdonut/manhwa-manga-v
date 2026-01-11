@@ -1,5 +1,4 @@
 {
-    "rewrites":[{"source": "/api/v1/","destination":"/api"},
-                {"source": "/home","destination":"/home"}
+    "rewrites":[{"source": "/api/v1/","destination":"/api"}
 ]
 }
