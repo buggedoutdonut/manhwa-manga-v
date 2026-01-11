@@ -31,7 +31,7 @@ export const Header = () => {
                 localStorage.setItem("userName",null)
                 localStorage.setItem("password",null)
                 window.alert("Please login.")
-                setTimeout(() => navigator("/login"))
+                setTimeout(() => navigator("/"))
             } else {
                 localStorage.setItem("isLoggedIn",true)
             }
@@ -131,7 +131,7 @@ export const Header = () => {
         logOutButton.style.color = "red"
         localStorage.removeItem("isLoggedIn")
         localStorage.removeItem("userName")
-        setTimeout(() => navigator("/login"),1500)
+        setTimeout(() => navigator("/"),1500)
     }
 
     return(
