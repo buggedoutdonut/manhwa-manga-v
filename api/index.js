@@ -1,4 +1,5 @@
 const express = require("express");
+const serverless = require("serverless-http")
 const app = express()
 const cors = require("cors")
 const fs = require("fs");
@@ -11,9 +12,9 @@ const Pool = require('pg').Pool
 app.use(cors())
 app.use(express.json())
 
-app.listen(3000, () =>{
-    console.log("connected.")
-})
+// app.listen(3000, () =>{
+//     console.log("connected.")
+// })
 
 const connection = new Pool(({
     host:PGHOST,
@@ -399,3 +400,5 @@ app.put('/api/v1/updateChapters/',(req,res) =>{
 
 
 })
+
+module.exports = serverless(app)

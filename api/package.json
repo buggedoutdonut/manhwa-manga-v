@@ -17,6 +17,7 @@
     "express": "^5.2.1",
     "nodemon": "^3.1.11",
     "pg": "^8.16.3",
-    "puppeteer-core": "^24.34.0"
+    "puppeteer-core": "^24.34.0",
+    "serverless-http": "^4.0.0"
   }
 }
