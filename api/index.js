@@ -6,6 +6,7 @@ const fs = require("fs");
 const dotenv = require("dotenv").config();
 const chromium = require('@sparticuz/chromium-min');
 const puppeteer  = require("puppeteer-core");
+const { default: Chromium } = require("@sparticuz/chromium-min");
 const {PGHOST,PGDATABASE,PGUSER,PGPASSWORD} = process.env
 
 const Pool = require('pg').Pool
@@ -111,6 +112,7 @@ app.get('/getChapters/:title', async (req,res) =>{
   
     const browser = await pupeteer.launch({
         args:[...chromium.args, "--no-sandbox", "--disable-setuid-sandbox"],
+        executablePath:await chromium.executablePath(),
         headless:true
     })
         
