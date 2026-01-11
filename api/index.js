@@ -4,7 +4,7 @@ const cors = require("cors")
 const pupeteer = require("puppeteer");
 const fs = require("fs");
 const dotenv = require("dotenv").config();
-const chromium = require('chrome-aws-lambda');
+const chromium = require('@sparticuz/chromium-min');
 const puppeteer  = require("puppeteer-core");
 const {PGHOST,PGDATABASE,PGUSER,PGPASSWORD} = process.env
 
