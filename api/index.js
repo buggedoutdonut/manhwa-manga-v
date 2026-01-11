@@ -117,7 +117,7 @@ app.get('/getChapters/:title', async (req,res) =>{
         
     const page = await browser.newPage()
     await page.setUserAgent(ua)
-    await page.goto('https://mangahub.io/manga/'+title, {waitUntil:"domcontentloaded"})
+    await page.goto('https://mangahub.io/manga/'+title, {waitUntil:"domcontentloaded",timeout:50000})
     const getChapters = await page.evaluate(() =>{
         // select all span that has this specific class
         const chapters = document.querySelectorAll('span[class="text-secondary _3D1SJ"]')
