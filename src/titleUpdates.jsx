@@ -30,7 +30,7 @@ export const CheckTitleUpdates = () =>{
 
         statusText.textContent = "Please wait while we update the titles. Do not close this page."
         try {
-            const request = await fetch('/allTitles')
+            const request = await fetch('api/v1/allTitles')
             const response = await request.json()
             setManghwas(response)
             console.log(response)
@@ -44,7 +44,7 @@ export const CheckTitleUpdates = () =>{
         const listLength = manghwas.length + 1
         try {
             const names = await manghwas.map(async(manghwa) =>{
-                const request = await fetch('/MHLastChapter/'+manghwa.code)
+                const request = await fetch('api/v1/MHLastChapter/'+manghwa.code)
                 updatingListText.textContent = "⏳ Currently Checking ("+manghwa.id+"/"+ listLength +") - "+manghwa.name
                 const response = await request.json() 
                     if(parseFloat(response) > parseFloat(manghwa.chapters)){
@@ -75,7 +75,7 @@ export const CheckTitleUpdates = () =>{
         }
 
         try {
-            const request = await fetch('/updateChapters',header)
+            const request = await fetch('api/v1/updateChapters',header)
         } catch (error) {
             console.log(error)
         }

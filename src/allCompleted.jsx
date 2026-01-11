@@ -10,7 +10,7 @@ export const AllCompleted = () =>{
     let searchArray = []
 
     const fetchTitles = async() =>{
-        const url = "/getCompleted"
+        const url = "api/v1/getCompleted"
 
         try {
             const request = await fetch(url)

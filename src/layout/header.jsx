@@ -21,7 +21,7 @@ export const Header = () => {
     },[])
    
     const checkAuthentication = async () =>{
-        const url = "/login/"+userName+"/"+password
+        const url = "api/v1/login/"+userName+"/"+password
         try {
             const request = await fetch(url)    
             const response = await request.json()

@@ -33,7 +33,7 @@ export const CreateCards = (type) =>{
 
     //Fetch all data from DB based on category
     const getList = async () =>{
-        const url = '/getTopSix/'+type.type
+        const url = 'api/v1/getTopSix/'+type.type
 
         try {
             const request = await fetch(url)

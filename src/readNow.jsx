@@ -22,7 +22,7 @@ export const ReadNow = () =>{
     const nextA = document.querySelectorAll(".next")
 
     const getAllImages = async() => {
-        const url = '/getImages/'+name+'/'+chapter
+        const url = 'api/v1/getImages/'+name+'/'+chapter
         try {
             const request = await fetch(url)
             const response = await request.json()
@@ -33,7 +33,7 @@ export const ReadNow = () =>{
     }
 
     const fetchRecentlyViewed = async () =>{
-        const url = "/getRecentlyViewed/"+userName
+        const url = "api/v1/getRecentlyViewed/"+userName
         try {
             const request = await fetch(url)
             const response = await request.json()

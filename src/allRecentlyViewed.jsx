@@ -18,7 +18,7 @@ export const AllRecentlyViewed = () =>{
    
 
     const fetchRecentlyViewed = async() =>{
-        const url = "/getRecentlyViewed/"+userName
+        const url = "api/v1/getRecentlyViewed/"+userName
 
         try {
             const request = await fetch(url)
@@ -49,7 +49,7 @@ export const AllRecentlyViewed = () =>{
 
            try {
                 const recentlyViewedPromise = codes.map(async(code) =>{
-                    const request = await fetch('/getRecentlyViewedManghwaDetails/'+code)
+                    const request = await fetch('api/v1/getRecentlyViewedManghwaDetails/'+code)
                     const response = await request.json()
                     return response[0]
                 })

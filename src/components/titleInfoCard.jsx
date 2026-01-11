@@ -32,7 +32,7 @@ export const CreateTitleInfoCard = (data) =>{
 
 
     const getFavorites = async () =>{
-        const url = "/getFavorites/"+userName
+        const url = "api/v1/getFavorites/"+userName
         try {
             const request = await fetch(url)
             const response = await request.json()
@@ -66,7 +66,7 @@ export const CreateTitleInfoCard = (data) =>{
 
         const jsonFavorites = JSON.stringify(body)
 
-        const url = "/updateFavorites"
+        const url = "api/v1/updateFavorites"
         const header = {
             method:"PUT",
             body: jsonFavorites,
