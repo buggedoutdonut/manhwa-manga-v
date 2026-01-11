@@ -51,7 +51,7 @@ export const Login = () =>{
         const password = formData.get('password')
         const encodedUsername = encodeURIComponent(username.toLowerCase())
         const encodedPassword = encodeURIComponent(password)
-        const url = "http://localhost:3000/login/"+encodedUsername+"/"+encodedPassword
+        const url = "https://blackcatcafe.vercel.app/api/v1/login/"+encodedUsername+"/"+encodedPassword
         const response = await fetch(url)
         const parseResponse = await response.json()
         
