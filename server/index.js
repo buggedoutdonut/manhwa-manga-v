@@ -3,7 +3,9 @@ const app = express()
 const cors = require("cors")
 const pupeteer = require("puppeteer");
 const fs = require("fs");
+const dotenv = require("dotenv").config()
 const { default: puppeteer } = require("puppeteer");
+const {PGHOST,PGDATABASE,PGUSER,PGPASSWORD} = process.env
 
 const Pool = require('pg').Pool
 
@@ -15,11 +17,14 @@ app.listen(3000, () =>{
 })
 
 const connection = new Pool(({
-    host:"localhost",
+    host:PGHOST,
     port:5432,
-    user:"postgres",
-    password:"password",
-    database:"blackcat"
+    user:PGUSER,
+    password:PGPASSWORD,
+    database:PGDATABASE,
+    ssl:{
+        require:true
+    }
 }))
 
 connection.connect(() =>{
