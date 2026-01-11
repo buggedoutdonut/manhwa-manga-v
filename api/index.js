@@ -1,14 +1,11 @@
-const express = require("express")
+const express = require("express");
 const app = express()
 const cors = require("cors")
-const pupeteer = require("puppeteer");
 const fs = require("fs");
 const dotenv = require("dotenv").config();
-const chromium = require('@sparticuz/chromium-min');
+const chrome = require('@sparticuz/chromium');
 const puppeteer  = require("puppeteer-core");
-const { default: Chromium } = require("@sparticuz/chromium-min");
 const {PGHOST,PGDATABASE,PGUSER,PGPASSWORD} = process.env
-
 const Pool = require('pg').Pool
 
 app.use(cors())
@@ -108,12 +105,14 @@ app.post('/try', (req,res) =>{
 
 app.get('/getChapters/:title', async (req,res) =>{
     const {title} = req.params
+    const executablePath = await chrome.executablePath()
     const ua = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.3"
   
-    const browser = await pupeteer.launch({
-        args:[...chromium.args, "--no-sandbox", "--disable-setuid-sandbox"],
-        executablePath:await chromium.executablePath(),
-        headless:true
+    const browser = await puppeteer.launch({
+        args:[...chrome.args, "--no-sandbox", "--disable-setuid-sandbox"],
+        executablePath: executablePath,
+        headless:true,
+        ignoreHTTPSErrors:true
     })
         
     const page = await browser.newPage()
