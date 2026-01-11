@@ -18,7 +18,7 @@ export const Login = () =>{
     
     const checkAuthentication = async () =>{
         if(userName != null && password != null){
-            const url = "http://localhost:3000/login/"+userName+"/"+password
+            const url = "https://blackcatcafe.vercel.app/api/v1/login/"+userName+"/"+password
             try {
                 const request = await fetch(url)    
                 const response = await request.json()
