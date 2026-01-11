@@ -11,7 +11,7 @@ export const TitleInfo = () => {
     const {id,code} = useParams()
     
     const getTitleData = async () =>{
-        const url = "/api/v1/getTitleData/"+id
+        const url = "https://black-cat-api.vercel.app/getTitleData/"+id
         
         try {
             const request = await fetch(url)
@@ -23,7 +23,7 @@ export const TitleInfo = () => {
     }
 
     const addVisit = async () =>{
-        const url = "/api/v1/addVisit/"
+        const url = "https://black-cat-api.vercel.app/addVisit/"
         const body = {}
         body['id'] = data.id
         body['visits'] = data.visits

@@ -2,7 +2,7 @@ export const GetRecentlyViewed = (data) =>{
     const userName = data.data
 
     const fetchRecentlyViewed = async () =>{
-        const url = "/api/v1/getRecentlyViewed/"+userName
+        const url = "https://black-cat-api.vercel.app/getRecentlyViewed/"+userName
         try {
             const request = await fetch(url)
             const response = await request.json()

@@ -10,7 +10,7 @@ export const AllCompleted = () =>{
     let searchArray = []
 
     const fetchTitles = async() =>{
-        const url = "/api/v1/getCompleted"
+        const url = "https://black-cat-api.vercel.app/getCompleted"
 
         try {
             const request = await fetch(url)

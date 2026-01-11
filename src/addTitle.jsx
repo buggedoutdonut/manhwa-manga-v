@@ -63,7 +63,7 @@ export const AddNewTitle = () =>{
         bodyObj["recent"] = currentDate
    
         const requestBody = JSON.stringify(bodyObj)
-        const url = "/api/v1/addtitle/"
+        const url = "https://black-cat-api.vercel.app/addtitle/"
 
         const requestHeaders = {
             method:"POST",
@@ -91,7 +91,7 @@ export const AddNewTitle = () =>{
         const imgLink = document.querySelector('input[name="imageLink"]')
         
         console.log(category)
-        const url = "/api/v1/getChapters/"+code.value
+        const url = "https://black-cat-api.vercel.app/getChapters/"+code.value
 
         try {
             const request = await fetch(url)

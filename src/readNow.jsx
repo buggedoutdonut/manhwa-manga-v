@@ -22,7 +22,7 @@ export const ReadNow = () =>{
     const nextA = document.querySelectorAll(".next")
 
     const getAllImages = async() => {
-        const url = '/api/v1/getImages/'+name+'/'+chapter
+        const url = 'https://black-cat-api.vercel.app/getImages/'+name+'/'+chapter
         try {
             const request = await fetch(url)
             const response = await request.json()
@@ -33,7 +33,7 @@ export const ReadNow = () =>{
     }
 
     const fetchRecentlyViewed = async () =>{
-        const url = "/api/v1/getRecentlyViewed/"+userName
+        const url = "https://black-cat-api.vercel.app/getRecentlyViewed/"+userName
         try {
             const request = await fetch(url)
             const response = await request.json()
@@ -59,7 +59,7 @@ export const ReadNow = () =>{
     }
 
     const updateRecentlyViewed = async (index) =>{
-        const url = "/updateRecentlyViewed"
+        const url = "https://black-cat-api.vercel.app/updateRecentlyViewed"
 
         if(index == null){
             recent.push(name+":"+chapter)

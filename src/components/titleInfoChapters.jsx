@@ -12,7 +12,7 @@ export const CreateTitleInfoChapters = (data) =>{
     let lastChapter
 
     const getChapters = async() =>{
-        const url = "/api/v1/getChapters/"+data.data
+        const url = "https://black-cat-api.vercel.app/getChapters/"+data.data
 
         try {
             const request = await fetch(url)

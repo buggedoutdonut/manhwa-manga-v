@@ -33,7 +33,7 @@ export const CreateCards = (type) =>{
 
     //Fetch all data from DB based on category
     const getList = async () =>{
-        const url = '/api/v1/getTopSix/'+type.type
+        const url = 'https://black-cat-api.vercel.app/getTopSix/'+type.type
 
         try {
             const request = await fetch(url)
