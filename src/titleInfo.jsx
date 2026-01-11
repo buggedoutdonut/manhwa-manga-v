@@ -11,7 +11,7 @@ export const TitleInfo = () => {
     const {id,code} = useParams()
     
     const getTitleData = async () =>{
-        const url = "http://localhost:3000/getTitleData/"+id
+        const url = "/getTitleData/"+id
         
         try {
             const request = await fetch(url)
@@ -23,7 +23,7 @@ export const TitleInfo = () => {
     }
 
     const addVisit = async () =>{
-        const url = "http://localhost:3000/addVisit/"
+        const url = "/addVisit/"
         const body = {}
         body['id'] = data.id
         body['visits'] = data.visits

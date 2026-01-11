@@ -10,7 +10,7 @@ export const AllManghwa = () =>{
     let searchArray = []
 
     const fetchTitles = async() =>{
-        const url = "http://localhost:3000/allTitles"
+        const url = "/allTitles"
 
         try {
             const request = await fetch(url)

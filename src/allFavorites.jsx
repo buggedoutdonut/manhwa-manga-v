@@ -15,7 +15,7 @@ export const AllFavorites = () =>{
     let searchArray = []
 
     const fetchFavorites = async() =>{
-        const url = "http://localhost:3000/getFavorites/"+userName
+        const url = "/getFavorites/"+userName
 
         try {
             const request = await fetch(url)
@@ -33,7 +33,7 @@ export const AllFavorites = () =>{
            const ids = favorites.filter(id => id != "")
            try {
                 const favoritesPromise = ids.map(async(id) =>{
-                    const request = await fetch('http://localhost:3000/getTitleData/'+id)
+                    const request = await fetch('/getTitleData/'+id)
                     const response = await request.json()
                     return response[0]
                 })

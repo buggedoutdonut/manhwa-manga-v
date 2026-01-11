@@ -42,13 +42,13 @@ export const AddMember = () =>{
         } else {
 
             // Validate if there are duplicate users
-            const validateUser = await fetch("http://localhost:3000/validateUser/"+username.value.toLowerCase())
+            const validateUser = await fetch("/"+username.value.toLowerCase())
             const parseResponse = await validateUser.json()
             console.log(parseResponse)
 
             // Proceed to add member if there is none
             if(parseResponse == 0){
-                const url = "http://localhost:3000/addmember/"
+                const url = "/addmember/"
                 const data = {
                         username:username.value.toLowerCase(),
                         password:password.value,

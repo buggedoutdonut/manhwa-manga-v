@@ -12,7 +12,7 @@ export const CreateTitleInfoChapters = (data) =>{
     let lastChapter
 
     const getChapters = async() =>{
-        const url = "http://localhost:3000/getChapters/"+data.data
+        const url = "/getChapters/"+data.data
 
         try {
             const request = await fetch(url)

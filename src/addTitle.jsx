@@ -63,7 +63,7 @@ export const AddNewTitle = () =>{
         bodyObj["recent"] = currentDate
    
         const requestBody = JSON.stringify(bodyObj)
-        const url = "http://localhost:3000/addtitle/"
+        const url = "/addtitle/"
 
         const requestHeaders = {
             method:"POST",
@@ -91,7 +91,7 @@ export const AddNewTitle = () =>{
         const imgLink = document.querySelector('input[name="imageLink"]')
         
         console.log(category)
-        const url = "http://localhost:3000/getChapters/"+code.value
+        const url = "/getChapters/"+code.value
 
         try {
             const request = await fetch(url)

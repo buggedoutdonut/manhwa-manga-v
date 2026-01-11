@@ -16,13 +16,13 @@ export const ReadNow = () =>{
     const current = getChapters.indexOf(parseFloat(chapter))
     const prev = getChapters[current-1]
     const next = getChapters[current+1]
-    const previousChapter = "http://localhost:5173/readnow/"+name+"/"+prev
-    const nextChapter = "http://localhost:5173/readnow/"+name+"/"+next
+    const previousChapter = "/readnow/"+name+"/"+prev
+    const nextChapter = "/readnow/"+name+"/"+next
     const prevA = document.querySelectorAll(".prev")
     const nextA = document.querySelectorAll(".next")
 
     const getAllImages = async() => {
-        const url = 'http://localhost:3000/getImages/'+name+'/'+chapter
+        const url = '/getImages/'+name+'/'+chapter
         try {
             const request = await fetch(url)
             const response = await request.json()
@@ -33,7 +33,7 @@ export const ReadNow = () =>{
     }
 
     const fetchRecentlyViewed = async () =>{
-        const url = "http://localhost:3000/getRecentlyViewed/"+userName
+        const url = "/getRecentlyViewed/"+userName
         try {
             const request = await fetch(url)
             const response = await request.json()
@@ -59,7 +59,7 @@ export const ReadNow = () =>{
     }
 
     const updateRecentlyViewed = async (index) =>{
-        const url = "http://localhost:3000/updateRecentlyViewed"
+        const url = "/updateRecentlyViewed"
 
         if(index == null){
             recent.push(name+":"+chapter)
