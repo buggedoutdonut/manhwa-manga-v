@@ -1,0 +1,41 @@
+.titleUpdateContainer{
+    width:50%;
+    margin:70px auto 70px auto;
+    height:20rem;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.updateButton{
+    background-color: rgb(57, 97, 182);
+    color:white;
+    padding:20px;
+    border:0;
+    border-radius: 7px;
+}
+
+.updateButton:hover{
+    background-color: blueviolet;
+    animation: buttonAnim .5s ease-in-out infinite alternate;
+}
+
+.status{
+    margin-top:60px;
+    font-size:.9rem;
+}
+
+.list{
+    margin-top:20px;
+    font-size:.9rem;
+}
+
+@keyframes buttonAnim{
+    from{
+        padding:20px;
+        background-color: rgb(57, 97, 182);
+    } 
+    to{
+        padding:18px;
+        background-color: blueviolet;
+    }
+}

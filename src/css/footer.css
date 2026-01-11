@@ -60,7 +60,7 @@
 .socialsImageContainer button{
     border:0;
     margin:0px 20px 0px 10px;
-    padding:0;
+    padding:5px;
     background:none;
 }
 
@@ -86,3 +86,34 @@ h4{
         transform:translate(0,-20%)
     }
 }
+
+@media (max-width:1100px){
+    .footerMain{
+        flex-direction: column;
+        height:100%;
+    }
+    .footerSubContainerDisc{
+        width:80%;
+        margin:auto;
+        border-right: 0;
+        border-bottom: 1px solid rgb(110, 110, 110);
+        background-image: none;
+    }
+      .footerSubContainerAbout{
+        width:80%;
+        margin:auto;
+        border-right: 0;
+        border-bottom: 1px solid rgb(110, 110, 110);
+        background-image: none;
+    }
+      .footerSubContainerSocials{
+        width:80%;
+        margin:auto;
+        border-right: 0;
+        border-bottom: 1px solid rgb(110, 110, 110);
+    }
+      .socialsImageContainer{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}   

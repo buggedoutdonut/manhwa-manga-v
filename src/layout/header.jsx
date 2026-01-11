@@ -1,26 +1,59 @@
 import "../css/layout.css"
-import logo from "../assets/logo.png"
+import logo from "../assets/header-logo.png"
 import { useEffect, useState } from "react"
 import menu from "../assets/menu.png"
 import { useNavigate, Link } from "react-router"
 
 export const Header = () => {
     const userName = localStorage.getItem("userName")
-    const [darkMode,setDarkMode] = useState(false);
+    const password = localStorage.getItem("password")
+    const BCdarkMode = localStorage.getItem("BCdarkMode")
+    const [darkMode,setDarkMode] = useState();
     const isLoggedIn = localStorage.getItem("isLoggedIn")
     const checkAccess = localStorage.getItem("userAccess")
     const navigator = useNavigate()
 
+    useEffect(() =>{
+        if(BCdarkMode != null || BCdarkMode != undefined){
+            setDarkMode(BCdarkMode)
+            DarkMode()
+        }
+    },[])
+   
+    const checkAuthentication = async () =>{
+        const url = "http://localhost:3000/login/"+userName+"/"+password
+        try {
+            const request = await fetch(url)    
+            const response = await request.json()
+
+            if(response == 0){
+                localStorage.setItem("isLoggedIn",null)
+                localStorage.setItem("userName",null)
+                localStorage.setItem("password",null)
+                window.alert("Please login.")
+                setTimeout(() => navigator("/login"))
+            } else {
+                localStorage.setItem("isLoggedIn",true)
+            }
+        } catch (error) {
+                console.log(error)
+        }
+        console.log(isLoggedIn)
+    }
+
     useEffect(()=>{
-        isLoggedIn == null? setTimeout(() => navigator("/"),500):console.log("")
-    },[isLoggedIn])
+        checkAuthentication()
+    },[])
 
     useEffect(() =>{
         const addNewTitle = document.getElementById("addNewTitle")
-        const addNewUser = document.getElementById("addNewUser")
+        const addNewUser = document.getElementById("addNewUsers")
+        const updateTitles = document.getElementById("updateTitles")
         if(checkAccess == "user"){
-            addNewTitle.style.display = "none"
             addNewUser.style.display = "none"
+            addNewTitle.style.display = "none"
+            updateTitles.style.display = "none"
+            
         }
     })
 
@@ -31,25 +64,52 @@ export const Header = () => {
         const menu = document.getElementById("menu")
         const closeMenu = document.getElementById("closeMenu")
         const body = document.body
-
-        if(darkMode){
-            darkModeLabel.textContent = "Off"
-            darkModeLabel.setAttribute("style","color:red;")
-            darkModeEmoji.textContent = "🌝"
-            darkModeButton.setAttribute("style","color:black;")
-            menu.style.backgroundColor = "white"
-            closeMenu.style.color ="black"
-            body.style.animation = "darkModeOff 2s forwards"
-            setDarkMode(false)
-        } else {
+        
+        if(darkMode == 'false'){
             darkModeLabel.textContent = "On"
             darkModeLabel.setAttribute("style","color:green;")
             darkModeEmoji.textContent = "🌚"
             darkModeButton.setAttribute("style","color:white;")
             menu.style.backgroundColor = "rgb(24, 24, 24)"
             closeMenu.style.color ="white"
-            body.style.animation = "darkModeOn 2s forwards"
-            setDarkMode(true)
+            body.style.animation = "darkModeOn .5s forwards"
+            setDarkMode('true')
+            localStorage.setItem('BCdarkMode','true')
+        }
+        
+        if(darkMode == 'true'){
+            darkModeLabel.textContent = "Off"
+            darkModeLabel.setAttribute("style","color:red;")
+            darkModeEmoji.textContent = "🌝"
+            darkModeButton.setAttribute("style","color:black;")
+            menu.style.backgroundColor = "white"
+            closeMenu.style.color ="black"
+            body.style.animation = "darkModeOff .5s forwards"
+            setDarkMode('false')
+            localStorage.setItem('BCdarkMode','false')
+            console.log(darkMode)
+        } 
+
+        if(BCdarkMode == 'true' && darkMode == undefined){
+            darkModeLabel.textContent = "On"
+            darkModeLabel.setAttribute("style","color:green;")
+            darkModeEmoji.textContent = "🌚"
+            darkModeButton.setAttribute("style","color:white;")
+            menu.style.backgroundColor = "rgb(24, 24, 24)"
+            closeMenu.style.color ="white"
+            body.style.animation = "darkModeOn .5s forwards"
+            setDarkMode('true')
+        }
+        
+        if(BCdarkMode == 'false' && darkMode == undefined){
+            darkModeLabel.textContent = "Off"
+            darkModeLabel.setAttribute("style","color:red;")
+            darkModeEmoji.textContent = "🌝"
+            darkModeButton.setAttribute("style","color:black;")
+            menu.style.backgroundColor = "white"
+            closeMenu.style.color ="black"
+            body.style.animation = "darkModeOff .5s forwards"
+            setDarkMode('false')
         }
     }
 
@@ -71,15 +131,14 @@ export const Header = () => {
         logOutButton.style.color = "red"
         localStorage.removeItem("isLoggedIn")
         localStorage.removeItem("userName")
-        setTimeout(() => navigator("/"),1500)
+        setTimeout(() => navigator("/login"),1500)
     }
 
     return(
         <div className="topHeader">
-            <div className="logoContainer">
+            <Link to="/home" className="link"><div className="logoContainer">
                 <img src={logo} className="logo"/>
-                <a>Black Cat's Cafe</a>
-            </div>
+            </div></Link>
             <div className="navContainer">
                 <button className="darkMode" id="darkModeButton" onClick={DarkMode}><a id="darkModeEmoji">🌝</a> Dark Mode: <a className="darkModeStatus" id="darkModeLabel">Off</a></button>
                 <button className="menuButton" onClick={showMenu}><img src={menu} /></button>
@@ -88,11 +147,12 @@ export const Header = () => {
                 <button className="closeMenu" id="closeMenu" onClick={closeMenu}>X</button>
                 <div className="subMenu">
                     <h2>👋 Welcome, {userName}</h2>
-                    <button className="subMenuButtons">⛉ Bookmarks</button>
-                    <button className="subMenuButtons">👁 Recently Viewed</button>
-                    <button className="subMenuButtons">𝄜 Request</button>
+                    <Link to="/all/favorites"><button className="subMenuButtons">⛉ Favorites</button></Link>
+                    <Link to="/all/recentlyviewed"><button className="subMenuButtons">👁 Recently Viewed</button></Link>
+                    <Link to="/all"><button className="subMenuButtons" id="addNewUser">🕮 View all Manghwa</button></Link>
                     <Link to="/addtitle"><button className="subMenuButtons" id="addNewTitle">✚ Add new title</button></Link>
-                    <Link to="/addmember"><button className="subMenuButtons" id="addNewUser">👥 Add new user</button></Link>
+                    <Link to="/updatetitles"><button className="subMenuButtons" id="updateTitles">🗘 Check title updates</button></Link>
+                    <Link to="/addmember"><button className="subMenuButtons" id="addNewUsers">☻ Add new user</button></Link>
                     <button className="subMenuButtons" onClick={logOut} id="logOut">⏻ Logout</button>
                     <p className="accessText">★ {checkAccess.toUpperCase()}</p>
                 </div>

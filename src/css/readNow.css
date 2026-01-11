@@ -1,0 +1,55 @@
+.imagesContainer{
+    display:flex;
+    flex:1;
+    flex-direction: column;
+    width:47%;
+    margin:auto;
+    margin-top:3rem;
+    margin-bottom:10rem;
+    min-height:100vh;
+}
+
+
+.loadingAnim{
+    margin-top:10px;
+    animation: loading 2s ease-in-out infinite;
+}
+
+.loadingContainer{
+    margin:auto;
+    text-align: center;
+}
+
+.buttonsContainer{
+    display:flex;
+    flex:1;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: rgb(41, 40, 40);
+    padding:15px;
+}
+
+.buttonsContainer button{
+    background-color: blueviolet;
+    padding:7px;
+    border:none;
+    border-radius: 5px;
+    color:white;
+    width:7rem;
+    max-height:2.2rem;
+}
+
+@keyframes loading{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width:1000px){
+    .imagesContainer{
+        width:100%;
+    }
+}

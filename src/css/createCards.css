@@ -1,6 +1,45 @@
 .mCards{
-    width:15rem;
-    height:15rem;
-    background-color: wheat;
+    display:flex;
+    flex:1;
+    flex-direction: column;
+    width:100%;
+    height:100%;
     border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.title{
+    font-size:.9rem;
+    padding:10px;
+}
+
+a{
+    color:rgb(139, 60, 175);
+}
+
+.chapters{
+    font-size:.75rem;
+    color:rgb(85, 84, 84);
+}
+
+.mCards img{
+    border:1px solid rgb(42, 4, 112);
+    border-radius:5px;
+}
+
+.flavorText{
+    background-color:rgb(201, 64, 64);
+    padding:10px;
+    color:rgb(255, 255, 255);
+    font-size:.8rem;
+    border-radius: 4px;
+    font-style: oblique;
+}
+
+a{
+    text-decoration: none;
 }

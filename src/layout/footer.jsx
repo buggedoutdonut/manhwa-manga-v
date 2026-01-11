@@ -14,7 +14,6 @@ import { Link } from "react-router"
 
 export const Footer = () => {
     return(
-        <>
             <div className = "footerMain">
                 <div className ="footerSubContainerDisc">
                     <h4>🚨 DISCLAIMER</h4>
@@ -39,15 +38,14 @@ export const Footer = () => {
                     </div>
 
                     <div className="socialsImageContainer">
-                        <button><img src={reactLogo} height="100" width="100"/></button>
-                        <button><img src={cssLogo} height="100" width="100"/></button>
-                        <button><img src={jsLogo} height="100" width="100"/></button>
-                        <button><img src={nodeLogo} height="100" width="100"/></button>
-                        <button><img src={pgreLogo} height="100" width="100"/></button>
+                        <button><img src={reactLogo} height="80" width="80"/></button>
+                        <button><img src={cssLogo} height="80" width="80"/></button>
+                        <button><img src={jsLogo} height="80" width="80"/></button>
+                        <button><img src={nodeLogo} height="80" width="80"/></button>
+                        <button><img src={pgreLogo} height="80" width="80"/></button>
                     </div>
                 </div>
 
             </div>
-        </>
     )
 }

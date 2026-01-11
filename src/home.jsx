@@ -3,6 +3,7 @@ import { Header } from "./layout/header"
 import { CreateCards } from "./components/createCards"
 import "./css/home.css"
 import { Footer } from "./layout/footer"
+import { Link } from "react-router"
 
 
 export const Home = () =>{
@@ -14,54 +15,31 @@ export const Home = () =>{
             <div className="homeContainer">
                 <div className="homeTextContainer">
                     <h2 className="homeTextMain">Top Read</h2>
-                    <a>View More ➤ </a>
                 </div>
                 <div className="titlesContainer">
-                    <CreateCards />
-                    <CreateCards />
-                    <CreateCards />
-                    <CreateCards />
-                    <CreateCards />
-                    <CreateCards />
+                    <CreateCards key="TR" type="TR"/>
                 </div>
 
                 <div className="homeTextContainer">
                     <h2 className="homeTextSub">Latest Updates</h2>
-                    <a>View More ➤ </a>
                 </div>
                 <div className="titlesContainer">
-                    <CreateCards />
-                    <CreateCards />
-                    <CreateCards />
-                    <CreateCards />
-                    <CreateCards />
-                    <CreateCards />
+                    <CreateCards key="LU" type="LU"/>
                 </div>
 
                 <div className="homeTextContainer">
                     <h2 className="homeTextSub">New Release</h2>
-                    <a>View More ➤ </a>
                 </div>
                 <div className="titlesContainer">
-                    <CreateCards />
-                    <CreateCards />
-                    <CreateCards />
-                    <CreateCards />
-                    <CreateCards />
-                    <CreateCards />
+                    <CreateCards key="NR" type="NR"/>
                 </div>
 
                 <div className="homeTextContainer">
                     <h2 className="homeTextSub">Completed</h2>
-                    <a>View More ➤ </a>
+                    <Link to="/all/completed" class="viewMore">View More  </Link>
                 </div>
                 <div className="titlesContainer">
-                    <CreateCards />
-                    <CreateCards />
-                    <CreateCards />
-                    <CreateCards />
-                    <CreateCards />
-                    <CreateCards />
+                    <CreateCards key="CO" type="CO"/>
                 </div>
             </div>
             <Footer />

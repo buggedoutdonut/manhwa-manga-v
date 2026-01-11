@@ -108,7 +108,7 @@ export const AddMember = () =>{
                 <div className="addContainer" id="addContainer">
                     <h2 className="addTitle">ADD NEW MEMBER</h2>
                     <form className="form" onSubmit={addNewMember}>
-                        <input id="username" name="username" type="text" placeholder="Username" maxLength={10} required/>
+                        <input id="username" name="username" type="text" placeholder="Username" maxLength={10} required/><br/>
                         <input id="password" name="password" type="password" placeholder="Password" maxLength={10} required/>
                         <br/><select name="access" id="access">
                             <option value="admin">ADMIN</option>
