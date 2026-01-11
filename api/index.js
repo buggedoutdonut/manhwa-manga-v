@@ -1,11 +1,10 @@
 const express = require("express")
 const app = express()
 const cors = require("cors")
+const pupeteer = require("puppeteer");
 const fs = require("fs");
 const dotenv = require("dotenv").config()
-const chromium = require('chrome-aws-lambda')
-const puppeteer = require('puppeteer-core')
-const serverless = require('serverless-http')
+const { default: puppeteer } = require("puppeteer");
 const {PGHOST,PGDATABASE,PGUSER,PGPASSWORD} = process.env
 
 const Pool = require('pg').Pool
@@ -13,23 +12,9 @@ const Pool = require('pg').Pool
 app.use(cors())
 app.use(express.json())
 
-// helper to launch Chromium in serverless (chrome-aws-lambda) and fallback to local Puppeteer for dev
-async function launchBrowser(options = {}) {
-    try {
-        const executablePath = await chromium.executablePath
-        return await puppeteer.launch({
-            args: chromium.args,
-            defaultViewport: chromium.defaultViewport,
-            executablePath,
-            headless: chromium.headless,
-            ...options,
-        })
-    } catch (err) {
-        // fallback to full puppeteer for local development
-        const localPuppeteer = require('puppeteer')
-        return await localPuppeteer.launch(options)
-    }
-} 
+app.listen(3000, () =>{
+    console.log("connected.")
+})
 
 const connection = new Pool(({
     host:PGHOST,
@@ -123,7 +108,7 @@ app.get('/getChapters/:title', async (req,res) =>{
     const {title} = req.params
     const ua = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.3"
 
-    const browser = await launchBrowser({ headless: true })
+    const browser = await pupeteer.launch({headless:true})
     const page = await browser.newPage()
     await page.setUserAgent(ua)
     await page.goto('https://mangahub.io/manga/'+title, {waitUntil:"domcontentloaded"})
@@ -240,7 +225,7 @@ app.get('/getImages/:name/:chapter',async (req,res) =>{
     const chapter = req.params.chapter
     
     const ua = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.3"
-    const browser = await launchBrowser({ headless: true, timeout: 60000 })
+    const browser = await puppeteer.launch({headless:true,timeout:60000})
     const page = await browser.newPage()
     await page.setUserAgent(ua)
     await page.goto('https://mangahub.io/chapter/'+name+'/chapter-'+chapter+'')
@@ -357,7 +342,7 @@ app.get('/getRecentlyViewedManghwaDetails/:code',(req,res) =>{
 app.get('/MHLastChapter/:code',async (req,res) =>{
     const code = req.params.code
     const ua = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.3"
-    const browser = await launchBrowser({ headless: true })
+    const browser = await puppeteer.launch({headless:true})
     const page = await browser.newPage()
     await page.setUserAgent(ua)
     await page.goto('https://mangahub.io/manga/'+code,{waitUntil:"domcontentloaded",timeout:60000})
@@ -410,6 +395,4 @@ app.put('/updateChapters/',(req,res) =>{
     })
 
 
-}
-
-module.exports = serverless(app)
+})

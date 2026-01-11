@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "api",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -14,9 +14,6 @@
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
     "nodemon": "^3.1.11",
-    "pg": "^8.16.3",
-    "serverless-http": "^3.0.0",
-    "puppeteer-core": "^10.1.0",
-    "chrome-aws-lambda": "^10.1.0"
+    "pg": "^8.16.3"
   }
-} 
+}
