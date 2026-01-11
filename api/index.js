@@ -166,7 +166,7 @@ app.get('/api/v1/getChapters/:title', async (req,res) =>{
     res.send(getChapters)
 })
 
-app.get('/api/v1/getTopSix/:type',(req,res) =>{
+app.get('/getTopSix/:type',(req,res) =>{
     const checkType = req.params.type
     let query
 
