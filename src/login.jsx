@@ -18,7 +18,7 @@ export const Login = () =>{
     
     const checkAuthentication = async () =>{
         if(userName != null && password != null){
-            const url = "api/v1/login/"+userName+"/"+password
+            const url = "/api/v1/login/"+userName+"/"+password
             try {
                 const request = await fetch(url)    
                 const response = await request.json()
@@ -51,7 +51,7 @@ export const Login = () =>{
         const password = formData.get('password')
         const encodedUsername = encodeURIComponent(username.toLowerCase())
         const encodedPassword = encodeURIComponent(password)
-        const url = "api/v1/login/"+encodedUsername+"/"+encodedPassword
+        const url = "/api/v1/login/"+encodedUsername+"/"+encodedPassword
         const response = await fetch(url)
         const parseResponse = await response.json()
         

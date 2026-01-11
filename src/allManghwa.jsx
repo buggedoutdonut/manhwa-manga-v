@@ -10,7 +10,7 @@ export const AllManghwa = () =>{
     let searchArray = []
 
     const fetchTitles = async() =>{
-        const url = "api/v1/allTitles"
+        const url = "/api/v1/allTitles"
 
         try {
             const request = await fetch(url)

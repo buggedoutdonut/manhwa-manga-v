@@ -30,7 +30,7 @@ connection.connect(() =>{
     console.log('connected successfully')
 })
 
-app.get('api/v1/login/:user/:pass',(req,res) =>{
+app.get('/api/v1/login/:user/:pass',(req,res) =>{
     const username = req.params.user
     const pass = req.params.pass
     const query = 'SELECT * from logins where username=$1 AND password=$2'
@@ -51,7 +51,7 @@ app.get('api/v1/login/:user/:pass',(req,res) =>{
     })
 })
 
-app.get("api/v1/validateUser/:user",(req,res) =>{
+app.get("/api/v1/validateUser/:user",(req,res) =>{
     const user = req.params.user
     const query = 'SELECT * FROM logins where username = $1'
     connection.query(query,[user],(err,result) =>{
@@ -63,7 +63,7 @@ app.get("api/v1/validateUser/:user",(req,res) =>{
     })
 })
 
-app.post('api/v1/addmember',(req,res)=>{
+app.post('/api/v1/addmember',(req,res)=>{
     const {username,password,access} = req.body
     const query = 'INSERT INTO "logins" (username,password,access) VALUES ($1,$2,$3)'
     connection.query(query,[username,password,access],(err,result) =>{
@@ -75,7 +75,7 @@ app.post('api/v1/addmember',(req,res)=>{
     })
 })
 
-app.post('api/v1/addtitle', (req,res) =>{
+app.post('/api/v1/addtitle', (req,res) =>{
     const {title,code,category,description,status,release,recent,imageLink,chapters} = req.body
     parseFloat(chapters)
     console.log(typeof(chapters))
@@ -90,7 +90,7 @@ app.post('api/v1/addtitle', (req,res) =>{
     })
 })
 
-app.post('api/v1/try', (req,res) =>{
+app.post('/api/v1/try', (req,res) =>{
     console.log(req.body)
     const {name,code,category,status} = req.body
     const query = 'INSERT INTO "mDetailsv2" (name,code,category,status) VALUES ($1,$2,$3,$4)'
@@ -103,7 +103,7 @@ app.post('api/v1/try', (req,res) =>{
     })
 })
 
-app.get('api/v1/getChapters/:title', async (req,res) =>{
+app.get('/api/v1/getChapters/:title', async (req,res) =>{
     const {title} = req.params
     const executablePath = await chrome.executablePath()
     const ua = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.3"
@@ -166,7 +166,7 @@ app.get('api/v1/getChapters/:title', async (req,res) =>{
     res.send(getChapters)
 })
 
-app.get('api/v1/getTopSix/:type',(req,res) =>{
+app.get('/api/v1/getTopSix/:type',(req,res) =>{
     const checkType = req.params.type
     let query
 
@@ -197,7 +197,7 @@ app.get('api/v1/getTopSix/:type',(req,res) =>{
 })
 
 
-app.get("api/v1/getTitleData/:id",(req,res) =>{
+app.get("/api/v1/getTitleData/:id",(req,res) =>{
     const id = req.params.id
     const query = 'Select * from "mDetailsv2" where id = $1'
     connection.query(query,[id],(err,result) =>{
@@ -209,7 +209,7 @@ app.get("api/v1/getTitleData/:id",(req,res) =>{
     })
 })
 
-app.put("api/v1/addVisit/",(req,res) =>{
+app.put("/api/v1/addVisit/",(req,res) =>{
     const {id,visits} = req.body
     const visit = parseInt(visits) + 1
 
@@ -223,7 +223,7 @@ app.put("api/v1/addVisit/",(req,res) =>{
     })
 })
 
-app.get('api/v1/getImages/:name/:chapter',async (req,res) =>{
+app.get('/api/v1/getImages/:name/:chapter',async (req,res) =>{
     const name = req.params.name
     const chapter = req.params.chapter
     
@@ -257,7 +257,7 @@ app.get('api/v1/getImages/:name/:chapter',async (req,res) =>{
     
 })
 
-app.get('api/v1/allTitles',(req,res) =>{
+app.get('/api/v1/allTitles',(req,res) =>{
     const query = 'Select * from "mDetailsv2" ORDER BY "id" ASC'  
     connection.query(query,(err,result) => {
         if(err){
@@ -268,7 +268,7 @@ app.get('api/v1/allTitles',(req,res) =>{
     })
 })
 
-app.get('api/v1/getCompleted',(req,res) =>{
+app.get('/api/v1/getCompleted',(req,res) =>{
     const query = 'Select * from "mDetailsv2" where status = $1'
     const status = 'Completed'
     connection.query(query,[status],(err,result) =>{
@@ -280,7 +280,7 @@ app.get('api/v1/getCompleted',(req,res) =>{
     })
 })
 
-app.get('api/v1/getFavorites/:user',(req,res) =>{
+app.get('/api/v1/getFavorites/:user',(req,res) =>{
     const user = req.params.user
     const query = "SELECT favorites from logins where LOWER(username) = LOWER($1)"
 
@@ -294,7 +294,7 @@ app.get('api/v1/getFavorites/:user',(req,res) =>{
 
 })
 
-app.put('api/v1/updateFavorites/',(req,res) =>{
+app.put('/api/v1/updateFavorites/',(req,res) =>{
     const {user,favorites} = req.body
     const query = 'UPDATE logins set favorites=$1 where LOWER(username)=LOWER($2)'  
     connection.query(query,[favorites,user],(err,result) => {
@@ -306,7 +306,7 @@ app.put('api/v1/updateFavorites/',(req,res) =>{
     })
 })
 
-app.get('api/v1/getRecentlyViewed/:userName',(req,res) =>{
+app.get('/api/v1/getRecentlyViewed/:userName',(req,res) =>{
     const userName = req.params.userName
     const query = 'SELECT recent from logins where username = $1'
     connection.query(query,[userName],(err,result) =>{
@@ -318,7 +318,7 @@ app.get('api/v1/getRecentlyViewed/:userName',(req,res) =>{
     })
 })
 
-app.put('api/v1/updateRecentlyViewed',(req,res) =>{
+app.put('/api/v1/updateRecentlyViewed',(req,res) =>{
     const {userName,recent} = req.body
     const query = 'UPDATE logins set recent = $1 where LOWER(username) = LOWER($2)'
     connection.query(query,[recent,userName],(err,result) =>{
@@ -330,7 +330,7 @@ app.put('api/v1/updateRecentlyViewed',(req,res) =>{
     })
 })
 
-app.get('api/v1/getRecentlyViewedManghwaDetails/:code',(req,res) =>{
+app.get('/api/v1/getRecentlyViewedManghwaDetails/:code',(req,res) =>{
     const code = req.params.code
     const query = 'SELECT * from "mDetailsv2" where code = $1'
     connection.query(query,[code],(err,result) => {
@@ -342,7 +342,7 @@ app.get('api/v1/getRecentlyViewedManghwaDetails/:code',(req,res) =>{
     })
 })
 
-app.get('api/v1/MHLastChapter/:code',async (req,res) =>{
+app.get('/api/v1/MHLastChapter/:code',async (req,res) =>{
     const code = req.params.code
     const ua = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.3"
     const browser = await puppeteer.launch({headless:true})
@@ -370,7 +370,7 @@ app.get('api/v1/MHLastChapter/:code',async (req,res) =>{
     res.send(getLastChapter)
 })
 
-app.put('api/v1/updateChapters/',(req,res) =>{
+app.put('/api/v1/updateChapters/',(req,res) =>{
     const {id,chapter} = req.body
     const date = new Date()
     const year = date.getFullYear()
