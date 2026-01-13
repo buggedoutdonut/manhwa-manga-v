@@ -5,13 +5,14 @@ import "./css/titleInfo.css"
 import { useEffect, useState } from "react"
 import { CreateTitleInfoCard } from "./components/titleInfoCard"
 import { CreateTitleInfoChapters } from "./components/titleInfoChapters"
+import loadingImg from "./assets/book-flip.gif"
 
 export const TitleInfo = () => {
     const [data,setData] = useState()
     const {id,code} = useParams()
     
     const getTitleData = async () =>{
-        const url = "https://black-cat-api.vercel.app/getTitleData/"+id
+        const url = "https://black-cat-api-render.onrender.com/getTitleData/"+id
         
         try {
             const request = await fetch(url)
@@ -23,7 +24,7 @@ export const TitleInfo = () => {
     }
 
     const addVisit = async () =>{
-        const url = "https://black-cat-api.vercel.app/addVisit/"
+        const url = "https://black-cat-api-render.onrender.com/addVisit/"
         const body = {}
         body['id'] = data.id
         body['visits'] = data.visits
@@ -53,10 +54,10 @@ export const TitleInfo = () => {
         <>
             <Header />
                 <div className="titleInfoMainContainer">              
-                        {data == undefined? console.log():
+                        {data == undefined? <div className="loadingContainer"><img src={loadingImg} className="titleLoading"></img><h3 className="titleLoadingText">Please wait while we load the details.</h3></div>:
                         <CreateTitleInfoCard key={data.id} data={data} />}
 
-                        {data == undefined? console.log():
+                        {data == undefined? <></>:
                         <CreateTitleInfoChapters key="Chapters" data={data.code} />}
                 </div>
             <Footer />

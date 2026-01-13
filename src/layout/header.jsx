@@ -11,8 +11,9 @@ export const Header = () => {
     const [darkMode,setDarkMode] = useState();
     const isLoggedIn = localStorage.getItem("isLoggedIn")
     const checkAccess = localStorage.getItem("userAccess")
+    const body = document.querySelector("body")
     const navigator = useNavigate()
-
+    body.className = "body"
     useEffect(() =>{
         if(BCdarkMode != null || BCdarkMode != undefined){
             setDarkMode(BCdarkMode)
@@ -140,7 +141,7 @@ export const Header = () => {
                 <img src={logo} className="logo"/>
             </div></Link>
             <div className="navContainer">
-                <button className="darkMode" id="darkModeButton" onClick={DarkMode}><a id="darkModeEmoji">🌝</a> Dark Mode: <a className="darkModeStatus" id="darkModeLabel">Off</a></button>
+                <button className="darkMode" id="darkModeButton" onClick={DarkMode}><a id="darkModeEmoji">🌝</a>Dark Mode: <a className="darkModeStatus" id="darkModeLabel">Off</a></button>
                 <button className="menuButton" onClick={showMenu}><img src={menu} /></button>
             </div>
             <div className="menu" id="menu">

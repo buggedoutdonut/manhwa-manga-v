@@ -1,5 +1,6 @@
 .titleInfoMainContainer{
     width:55%;
+    min-height:40rem;
     margin:40px auto auto auto;
 }
 
@@ -54,9 +55,22 @@
     flex-flow: wrap;
     flex-direction: row;
     gap:5px;
-    max-height:3.5rem;
+    max-height:20rem;
     width:85%;
 }
+
+
+.miniDetailsContainer{
+    padding:0px 0px 0px 20px;
+    display:flex;
+    flex:1;
+    flex-flow: wrap;
+    flex-direction: row;
+    gap:5px;
+    max-height:20rem;
+    width:85%;
+}
+
 
 .descriptionText{
     margin-top:8px;
@@ -85,10 +99,11 @@
 
 }
 
-.chaptersButtonContainer{
+.chapterButtonsContainer{
     display:flex;
     flex:1;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .chapterNumberContainer{
@@ -132,6 +147,17 @@
     text-align: center;
 }
 
+.titleLoading{
+    margin-top:30%;
+    border-radius:100%;
+}
+
+.titleLoadingText{
+    color:transparent;
+    background:linear-gradient(to right,rgb(110, 45, 184),rgb(233, 67, 56));
+    background-clip: text;
+}
+
 @keyframes loading{
     from{
         transform: rotate(0deg);
@@ -154,7 +180,26 @@
         flex-direction: column;
     }
     .chaptersMainContainer{
+        justify-content: center;
         align-items: center;
         margin-top:200px;
+    }
+    .titleInfoMainContainer{
+        width:100%;
+    }
+    .titleBar{
+        display:none;
+    }
+    .titleText{
+        text-align: justify;
+    }
+    .miniDetailsContainer{
+        justify-content: center;
+    }
+    .chapterButtonsContainer{
+        justify-content: center;
+    }
+    .chapterNumberContainer{
+        justify-content: center;
     }
 }

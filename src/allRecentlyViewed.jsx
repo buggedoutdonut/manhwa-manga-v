@@ -3,6 +3,7 @@ import { CreateAllTitlesCards } from "./components/allTitlesCards"
 import "./css/allManghwa.css"
 import { Footer } from "./layout/footer"
 import { Header } from "./layout/header"
+import logo from "./assets/logo.png"
 
 export const AllRecentlyViewed = () =>{
     const [manghwa,setManghwa] = useState()
@@ -18,7 +19,7 @@ export const AllRecentlyViewed = () =>{
    
 
     const fetchRecentlyViewed = async() =>{
-        const url = "https://black-cat-api.vercel.app/getRecentlyViewed/"+userName
+        const url = "https://black-cat-api-render.onrender.com/getRecentlyViewed/"+userName
 
         try {
             const request = await fetch(url)
@@ -49,7 +50,7 @@ export const AllRecentlyViewed = () =>{
 
            try {
                 const recentlyViewedPromise = codes.map(async(code) =>{
-                    const request = await fetch('https://black-cat-api.vercel.app/getRecentlyViewedManghwaDetails/'+code)
+                    const request = await fetch('https://black-cat-api-render.onrender.com/getRecentlyViewedManghwaDetails/'+code)
                     const response = await request.json()
                     return response[0]
                 })
@@ -104,16 +105,16 @@ export const AllRecentlyViewed = () =>{
         <Header />
         <div className="allTitlesContainer">
             <div className="selectorContainer">
-                <h2 className="homeTextSub">📌 Recently Viewed</h2>
+                <h2 className="allManghwaText">📌 Recently Viewed</h2>
                 <input type="text" placeholder="🔎︎ Search.." className="searchText" onChange={searchFunction}></input>
             </div>
             <div className="border" />
             {
-                    manghwa == undefined || manghwa.length <= 0? <h3>No results.</h3>:
+                    manghwa == undefined? <div className="loadingContainer"><img src={logo} className="loadingAnim" width="50"/><br/><h3>Loading titles..</h3></div>:
+                    manghwa.length <= 0 && manghwa != undefined? <h3>No results.</h3>:
                     manghwa.map((title,index) =>{
                         const recentChapter = recentChapters[index]
                         console.log(recentChapters[index])
-                
                         return <CreateAllTitlesCards key={title.id} data={title} recentChapter={recentChapter}/>             
                     })
             }

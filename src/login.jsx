@@ -15,10 +15,12 @@ export const Login = () =>{
     const isLoggedIn = localStorage.getItem("isLoggedIn")
     const userName = localStorage.getItem("userName")
     const password = localStorage.getItem("password")
-    
+    const body = document.querySelector("body")
+    body.id = "body"
+
     const checkAuthentication = async () =>{
         if(userName != null && password != null){
-            const url = "https://black-cat-api.vercel.app/login/"+userName+"/"+password
+            const url = "https://black-cat-api-render.onrender.com/login/"+userName+"/"+password
             try {
                 const request = await fetch(url)    
                 const response = await request.json()
@@ -46,41 +48,48 @@ export const Login = () =>{
 
     const handleForm = async (e) =>{
         e.preventDefault()
+        const update = document.getElementById("update1")
+        const form = document.getElementById("form")
+        let loginUpdate1
+        if(update == null){
+            loginUpdate1 = document.createElement("h3")
+            loginUpdate1.textContent = "Please wait..."
+            loginUpdate1.style.color = "Green"
+            loginUpdate1.setAttribute("id","update1")
+            form.append(loginUpdate1)
+        } else {
+            update.textContent = "Please wait..."
+            update.style.color = "Green"
+        }
+        
+        
+        
+
         const formData = new FormData(e.currentTarget)
         const username = formData.get('username')
         const password = formData.get('password')
         const encodedUsername = encodeURIComponent(username.toLowerCase())
         const encodedPassword = encodeURIComponent(password)
-        const url = "https://black-cat-api.vercel.app/login/"+encodedUsername+"/"+encodedPassword
+        const url = "https://black-cat-api-render.onrender.com/login/"+encodedUsername+"/"+encodedPassword
         const response = await fetch(url)
         const parseResponse = await response.json()
         
-        
-        
-        const loginUpdate = document.createElement("h3")
+        const update1 = document.getElementById("update1")
         if(parseResponse == 0){
-            loginUpdate.textContent = "Incorrect username/password."
-            loginUpdate.setAttribute("style","color:red")
-            loginUpdate.setAttribute("id","update")
+            update1.textContent = "Incorrect username/password."
+            update1.setAttribute("style","color:red")
         } else {
-            const checkAccess = parseResponse['access'][0]
-            loginUpdate.textContent = "Login sucessful. Redirecting..."
-            loginUpdate.setAttribute("style","color:green")
-            loginUpdate.setAttribute("id","update")
-            setTimeout(() => navigator("/home"), 1500)
+            const checkAccess = await parseResponse['access'][0]
+            update1.textContent = "Login sucessful. Redirecting..."
+            update1.setAttribute("style","color:green")
+            setTimeout(() => navigator("/home"), 100)
             localStorage.setItem("userAccess",checkAccess["access"])
             localStorage.setItem("isLoggedIn",true)
             localStorage.setItem("userName",encodedUsername)
             localStorage.setItem("password",encodedPassword)
-        }
-    
-        const form = document.getElementById("form")
-        const update = document.getElementById("update")
-        if(update != null){
-            update.remove()
-        }
-        form.append(loginUpdate)
-        
+            body.id = "#"
+            body.className = "body"
+        }        
 
     }
 

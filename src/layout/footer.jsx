@@ -16,7 +16,7 @@ export const Footer = () => {
     return(
             <div className = "footerMain">
                 <div className ="footerSubContainerDisc">
-                    <h4>🚨 DISCLAIMER</h4>
+                    <h3>🚨 DISCLAIMER</h3>
                     <p className="disclaimer">This website operates strictly as a non-commercial, personal-use platform. 
                         No revenue is generated from the display or distribution of any content. 
                         All copyrighted materials remain the property of their respective copyright holders and are presented here under the assumption of fair personal use. 
@@ -24,13 +24,13 @@ export const Footer = () => {
                 </div>
 
                 <div className ="footerSubContainerAbout">
-                    <h4>ℹ️ ABOUT US</h4>
+                    <h3>ℹ️ ABOUT US</h3>
                     <p className="disclaimer"><b>Black Cat Café </b>is a warm, stylish, and community-driven manhwa haven crafted for readers who crave immersive stories, stunning artwork, and a relaxing place to unwind. Whether you're into heart-pounding action, slow-burn romance, supernatural mysteries, or slice-of-life charm,
                      our platform serves up a curated selection of manhwa that satisfies every mood.</p>
                 </div>
 
                 <div className ="footerSubContainerSocials">
-                    <h4>🌐 MY SOCIALS</h4>
+                    <h3>🌐 SOCIALS</h3>
                     <div className="socialsImageContainer">
                         <Link to="#"><button><img src={discordLogo} height="100" width="100"/></button></Link>
                         <Link to="#"><button><img src={facebookLogo} height="100" width="100"/></button></Link>

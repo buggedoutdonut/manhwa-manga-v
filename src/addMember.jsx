@@ -42,13 +42,13 @@ export const AddMember = () =>{
         } else {
 
             // Validate if there are duplicate users
-            const validateUser = await fetch("https://black-cat-api.vercel.app/validateUser/"+username.value.toLowerCase())
+            const validateUser = await fetch("https://black-cat-api-render.onrender.com/validateUser/"+username.value.toLowerCase())
             const parseResponse = await validateUser.json()
             console.log(parseResponse)
 
             // Proceed to add member if there is none
             if(parseResponse == 0){
-                const url = "https://black-cat-api.vercel.app/addmember/"
+                const url = "https://black-cat-api-render.onrender.com/addmember/"
                 const data = {
                         username:username.value.toLowerCase(),
                         password:password.value,

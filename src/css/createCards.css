@@ -13,8 +13,8 @@
 }
 
 .title{
-    font-size:.9rem;
-    padding:10px;
+    font-size:.8rem;
+    padding:5px;
 }
 
 a{
@@ -42,4 +42,52 @@ a{
 
 a{
     text-decoration: none;
+}
+
+@media (max-width:900px){
+    .mCards img{
+        height:150px;
+        width:110px;
+    }
+    .mCards{
+        min-width:8rem;
+        min-width:8rem;
+    }
+    .title{
+        padding:0;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        font-size:.8rem;
+    }
+    .flavorText{
+        font-size:.7rem;
+    }
+    .chapters{
+    font-size:.7rem;
+    color:rgb(85, 84, 84);
+}
+}
+
+@media (max-width:400px){
+    .mCards img{
+        height:110px;
+        width:80px;
+    }
+    .mCards{
+        min-width:9rem;
+        min-width:9rem;
+    }
+    .title{
+        padding:0;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        font-size:.8rem;
+    }
+    .flavorText{
+        font-size:.6rem;
+    }
+    .chapters{
+    font-size:.6rem;
+    color:rgb(85, 84, 84);
+}
 }

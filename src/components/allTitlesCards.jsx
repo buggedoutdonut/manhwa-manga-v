@@ -6,7 +6,6 @@ export const CreateAllTitlesCards = ({data,recentChapter}) =>{
     const title = data
     let link = "/titleInfo/"+title.id+"/"+title.code
     let chText = "Chapters - "+title.chapters
-    console.log(chText)
     let name = title.name
     if(title.name.length > 16){
         name = title.name.slice(0,17) + ".."

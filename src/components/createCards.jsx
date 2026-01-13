@@ -24,7 +24,7 @@ export const CreateCards = (type) =>{
                 flavorText.style.color = "white"
                 flavorText.style.backgroundColor = "green"
                 type.type == "CO"? flavorText.textContent = "BINGE NOW":
-                type.type == "LU"? flavorText.textContent = "NEW UPDATE": flavorText.textContent = "NEWLY RELEASED"
+                type.type == "LU"? flavorText.textContent = "NEW UPDATE": flavorText.textContent = "NEW"
                 mCards.insertBefore(flavorText, title)
             }
         })
@@ -33,7 +33,7 @@ export const CreateCards = (type) =>{
 
     //Fetch all data from DB based on category
     const getList = async () =>{
-        const url = 'https://black-cat-api.vercel.app/getTopSix/'+type.type
+        const url = 'https://black-cat-api-render.onrender.com/getTopSix/'+type.type
 
         try {
             const request = await fetch(url)
@@ -68,7 +68,7 @@ export const CreateCards = (type) =>{
                 }
                     return <Link to = {linkTo}>
                         <div className="mCards" id={title}>
-                        <img src={element.imageLink} height="250" width="180"/><br/>
+                        <img src={element.imageLink} height="200" width="165"/><br/>
                         <span class="title" title={title}>{name}</span>
                         <span class="chapters">{subTitle}</span></div>
                         </Link>

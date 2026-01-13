@@ -12,7 +12,7 @@ export const CreateTitleInfoChapters = (data) =>{
     let lastChapter
 
     const getChapters = async() =>{
-        const url = "https://black-cat-api.vercel.app/getChapters/"+data.data
+        const url = "https://black-cat-api-render.onrender.com/getChapters/"+data.data
 
         try {
             const request = await fetch(url)
@@ -154,7 +154,7 @@ export const CreateTitleInfoChapters = (data) =>{
             <div className="chapterButtonsContainer" id="chBtnContainer">
                 {
                     // Initiate loading if the chapterlist's value is still not initialized
-                    chapterList.length!=0?console.log():<div className="loadingContainer"><img src={logo} className="loadingAnim" width="50"/><br/><h3>Loading chapters..</h3></div>
+                    chapterList.length!=0?<></>:<div className="loadingContainer"><img src={logo} className="loadingAnim" width="50"/><br/><h3>Loading chapters..</h3></div>
                 }
             </div>
             <div className="chapterNumberContainer" id="chNumContainer">

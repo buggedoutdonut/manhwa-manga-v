@@ -1,5 +1,5 @@
 .homeContainer{
-    width:70%;
+    width:75%;
     margin:10px auto 10px auto;
     padding:10px;
     font-family:sans-serif;
@@ -15,7 +15,6 @@
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     margin-bottom:20px;
     font-size:1.7rem;
-
 }
 
 .homeTextContainer{
@@ -51,5 +50,17 @@
 @media (max-width:900px){
     .titlesContainer{
         justify-content: center;
+        min-width:100%;
+    }
+    .homeContainer{
+        width:90%;
+        margin:auto;
+    }
+}
+
+@media (max-width:400px){
+    .titlesContainer{
+        justify-content:center;
+        min-width:100%;
     }
 }

@@ -3,6 +3,7 @@ import { CreateAllTitlesCards } from "./components/allTitlesCards"
 import "./css/allManghwa.css"
 import { Footer } from "./layout/footer"
 import { Header } from "./layout/header"
+import logo from "./assets/logo.png"
 
 export const AllFavorites = () =>{
     const [manghwa,setManghwa] = useState()
@@ -15,7 +16,7 @@ export const AllFavorites = () =>{
     let searchArray = []
 
     const fetchFavorites = async() =>{
-        const url = "https://black-cat-api.vercel.app/getFavorites/"+userName
+        const url = "https://black-cat-api-render.onrender.com/getFavorites/"+userName
 
         try {
             const request = await fetch(url)
@@ -33,7 +34,7 @@ export const AllFavorites = () =>{
            const ids = favorites.filter(id => id != "")
            try {
                 const favoritesPromise = ids.map(async(id) =>{
-                    const request = await fetch('https://black-cat-api.vercel.app/v1/getTitleData/'+id)
+                    const request = await fetch('https://black-cat-api-render.onrender.com/v1/getTitleData/'+id)
                     const response = await request.json()
                     return response[0]
                 })
@@ -88,15 +89,16 @@ export const AllFavorites = () =>{
         <Header />
         <div className="allTitlesContainer">
             <div className="selectorContainer">
-                <h2 className="homeTextSub">⭐ Favorites</h2>
+                <h2 className="allManghwaText">⭐ Favorites</h2>
                 <input type="text" placeholder="🔎︎ Search.." className="searchText" onChange={searchFunction}></input>
             </div>
             <div className="border" />
             {
-                    manghwa == undefined || manghwa.length <= 0? <h3>No results.</h3>:
-                    manghwa.map((title) =>{
-                        return <CreateAllTitlesCards key={title.id} data={title} />             
-                    })
+                manghwa == undefined? <div className="loadingContainer"><img src={logo} className="loadingAnim" width="50"/><br/><h3>Loading titles..</h3></div>:
+                manghwa.length <= 0 && manghwa != undefined? <h3>No results.</h3>:
+                manghwa.map((title) =>{
+                    return <CreateAllTitlesCards key={title.id} data={title} />
+                })
             }
         </div>
         <Footer />

@@ -3,6 +3,7 @@ import { CreateAllTitlesCards } from "./components/allTitlesCards"
 import "./css/allManghwa.css"
 import { Footer } from "./layout/footer"
 import { Header } from "./layout/header"
+import logo from "./assets/logo.png"
 
 export const AllManghwa = () =>{
     const [manghwa,setManghwa] = useState()
@@ -10,7 +11,7 @@ export const AllManghwa = () =>{
     let searchArray = []
 
     const fetchTitles = async() =>{
-        const url = "https://black-cat-api.vercel.app/allTitles"
+        const url = "https://black-cat-api-render.onrender.com/allTitles"
 
         try {
             const request = await fetch(url)
@@ -54,14 +55,15 @@ export const AllManghwa = () =>{
         <Header />
         <div className="allTitlesContainer">
             <div className="selectorContainer">
-                <h2 className="homeTextSub">🐾 All Titles</h2>
+                <h2 className="allManghwaText">🐾 All Titles</h2>
                 <div className="searchContainer">
                 <input type="text" placeholder="🔎︎ Search.." className="searchText" onChange={searchFunction}></input>
                 </div>
             </div>
             <div className="border" />
             {
-                manghwa == undefined || manghwa.length <= 0? <h3>No results.</h3>:
+                manghwa == undefined? <div className="loadingContainer"><img src={logo} className="loadingAnim" width="50"/><br/><h3>Loading titles..</h3></div>:
+                manghwa.length <= 0 && manghwa != undefined? <h3>No results.</h3>:
                 manghwa.map((title) =>{
                     return <CreateAllTitlesCards key={title.id} data={title} />
                 })
