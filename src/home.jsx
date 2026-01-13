@@ -36,7 +36,7 @@ export const Home = () =>{
 
                 <div className="homeTextContainer">
                     <h2 className="homeTextSub">Completed</h2>
-                    <Link to="/all/completed" class="viewMore">View More  </Link>
+                    <Link to="/all/completed" className="viewMore">View More  </Link>
                 </div>
                 <div className="titlesContainer">
                     <CreateCards key="CO" type="CO"/>

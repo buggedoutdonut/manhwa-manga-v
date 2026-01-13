@@ -59,14 +59,14 @@ export const Header = () => {
     })
 
     const DarkMode = () =>{
-        console.log("HERE!")
+        console.log(BCdarkMode," BCDM ",darkMode)
         const darkModeLabel = document.getElementById("darkModeLabel")
         const darkModeEmoji = document.getElementById("darkModeEmoji")
         const darkModeButton = document.getElementById("darkModeButton")
         const menu = document.getElementById("menu")
         const closeMenu = document.getElementById("closeMenu")
         const body = document.querySelector('.body')
-        console.log("HERE!!")
+        
         if(darkMode == 'false'){
             darkModeLabel.textContent = "On"
             darkModeLabel.setAttribute("style","color:green;")
@@ -78,7 +78,7 @@ export const Header = () => {
             setDarkMode('true')
             localStorage.setItem('BCdarkMode','true')
         }
-        console.log("HERE!!!")
+        
         if(darkMode == 'true'){
             darkModeLabel.textContent = "Off"
             darkModeLabel.setAttribute("style","color:red;")
@@ -91,7 +91,7 @@ export const Header = () => {
             localStorage.setItem('BCdarkMode','false')
             console.log(darkMode)
         } 
-        console.log("HERE!!!!")
+        
         if(BCdarkMode == 'true' && darkMode == undefined){
             darkModeLabel.textContent = "On"
             darkModeLabel.setAttribute("style","color:green;")
@@ -102,7 +102,7 @@ export const Header = () => {
             body.style.animation = "darkModeOn .5s forwards"
             setDarkMode('true')
         }
-        console.log("HERE!!!!!")
+        
         if(BCdarkMode == 'false' && darkMode == undefined){
             darkModeLabel.textContent = "Off"
             darkModeLabel.setAttribute("style","color:red;")
