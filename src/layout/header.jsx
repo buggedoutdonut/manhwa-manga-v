@@ -59,7 +59,7 @@ export const Header = () => {
     })
 
     const DarkMode = () =>{
-        console.log(BCdarkMode," BCDM ",darkMode)
+        
         const darkModeLabel = document.getElementById("darkModeLabel")
         const darkModeEmoji = document.getElementById("darkModeEmoji")
         const darkModeButton = document.getElementById("darkModeButton")
@@ -92,7 +92,7 @@ export const Header = () => {
             console.log(darkMode)
         } 
         
-        if(BCdarkMode == 'true' && darkMode == undefined){
+        if(BCdarkMode == 'true' && darkMode == undefined || BCdarkMode == null && darkMode == undefined){
             darkModeLabel.textContent = "On"
             darkModeLabel.setAttribute("style","color:green;")
             darkModeEmoji.textContent = "🌚"
@@ -113,7 +113,7 @@ export const Header = () => {
             body.style.animation = "darkModeOff .5s forwards"
             setDarkMode('false')
         }
-        console.log("HERE!!!!!!")
+    
     }
 
     const showMenu = () =>{
