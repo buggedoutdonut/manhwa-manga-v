@@ -29,10 +29,12 @@ export const Login = () =>{
                     localStorage.setItem("isLoggedIn",null)
                     localStorage.setItem("userName",null)
                     localStorage.setItem("password",null)
-                    setTimeout(() => navigator("/login"),1500)
+                    setTimeout(() => navigator("/login"),0)
                 } else {
                     localStorage.setItem("isLoggedIn",true)
                     setTimeout(() => navigator("/home"))
+                    body.id = "#"
+                    body.className = "body"
                 }
             } catch (error) {
                     console.log(error)
