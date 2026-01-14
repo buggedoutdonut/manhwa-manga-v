@@ -91,7 +91,7 @@ export const AddNewTitle = () =>{
         const imgLink = document.querySelector('input[name="imageLink"]')
         
         console.log(category)
-        const url = "https://black-cat-api.vercel.app/getChapters/"+code.value
+        const url = "https://black-cat-api-render.onrender.com/getChapters/"+code.value
 
         try {
             const request = await fetch(url)
