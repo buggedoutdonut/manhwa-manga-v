@@ -11,7 +11,7 @@ export const AllManghwa = () =>{
     let searchArray = []
 
     const fetchTitles = async() =>{
-        const url = "https://black-cat-api-render.onrender.com/allTitles"
+        const url = "https://black-cat-api.vercel.app/allTitles"
 
         try {
             const request = await fetch(url)

@@ -63,7 +63,7 @@ export const AddNewTitle = () =>{
         bodyObj["recent"] = currentDate
    
         const requestBody = JSON.stringify(bodyObj)
-        const url = "https://black-cat-api-render.onrender.com/addtitle/"
+        const url = "https://black-cat-api.vercel.app/addtitle/"
 
         const requestHeaders = {
             method:"POST",
@@ -91,7 +91,7 @@ export const AddNewTitle = () =>{
         const imgLink = document.querySelector('input[name="imageLink"]')
         
         console.log(category)
-        const url = "https://black-cat-api-render.onrender.com/getChapters/"+code.value
+        const url = "https://black-cat-api.vercel.app/getChapters/"+code.value
 
         try {
             const request = await fetch(url)

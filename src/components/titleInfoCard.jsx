@@ -32,7 +32,7 @@ export const CreateTitleInfoCard = (data) =>{
 
 
     const getFavorites = async () =>{
-        const url = "https://black-cat-api-render.onrender.com/getFavorites/"+userName
+        const url = "https://black-cat-api.vercel.app/getFavorites/"+userName
         try {
             const request = await fetch(url)
             const response = await request.json()
@@ -66,7 +66,7 @@ export const CreateTitleInfoCard = (data) =>{
 
         const jsonFavorites = JSON.stringify(body)
 
-        const url = "https://black-cat-api-render.onrender.com/updateFavorites"
+        const url = "https://black-cat-api.vercel.app/updateFavorites"
         const header = {
             method:"PUT",
             body: jsonFavorites,

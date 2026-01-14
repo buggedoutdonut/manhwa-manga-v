@@ -20,7 +20,7 @@ export const Login = () =>{
 
     const checkAuthentication = async () =>{
         if(userName != null && password != null){
-            const url = "https://black-cat-api-render.onrender.com/login/"+userName+"/"+password
+            const url = "https://black-cat-api.vercel.app/login/"+userName+"/"+password
             try {
                 const request = await fetch(url)    
                 const response = await request.json()
@@ -32,7 +32,7 @@ export const Login = () =>{
                     setTimeout(() => navigator("/login"),0)
                 } else {
                     localStorage.setItem("isLoggedIn",true)
-                    setTimeout(() => navigator("/home"))
+                    setTimeout(() => navigator("/home"),0)
                     body.id = "#"
                     body.className = "body"
                 }
@@ -72,7 +72,7 @@ export const Login = () =>{
         const password = formData.get('password')
         const encodedUsername = encodeURIComponent(username.toLowerCase())
         const encodedPassword = encodeURIComponent(password)
-        const url = "https://black-cat-api-render.onrender.com/login/"+encodedUsername+"/"+encodedPassword
+        const url = "https://black-cat-api.vercel.app/login/"+encodedUsername+"/"+encodedPassword
         const response = await fetch(url)
         const parseResponse = await response.json()
         

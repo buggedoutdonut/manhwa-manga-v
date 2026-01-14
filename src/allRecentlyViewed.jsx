@@ -19,7 +19,7 @@ export const AllRecentlyViewed = () =>{
    
 
     const fetchRecentlyViewed = async() =>{
-        const url = "https://black-cat-api-render.onrender.com/getRecentlyViewed/"+userName
+        const url = "https://black-cat-api.vercel.app/getRecentlyViewed/"+userName
 
         try {
             const request = await fetch(url)
@@ -50,7 +50,7 @@ export const AllRecentlyViewed = () =>{
 
            try {
                 const recentlyViewedPromise = codes.map(async(code) =>{
-                    const request = await fetch('https://black-cat-api-render.onrender.com/getRecentlyViewedManghwaDetails/'+code)
+                    const request = await fetch('https://black-cat-api.vercel.app/getRecentlyViewedManghwaDetails/'+code)
                     const response = await request.json()
                     return response[0]
                 })

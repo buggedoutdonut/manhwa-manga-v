@@ -11,7 +11,7 @@ export const AllCompleted = () =>{
     let searchArray = []
 
     const fetchTitles = async() =>{
-        const url = "https://black-cat-api-render.onrender.com/getCompleted"
+        const url = "https://black-cat-api.vercel.app/getCompleted"
 
         try {
             const request = await fetch(url)

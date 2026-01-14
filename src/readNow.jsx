@@ -33,7 +33,7 @@ export const ReadNow = () =>{
     }
 
     const fetchRecentlyViewed = async () =>{
-        const url = "https://black-cat-api-render.onrender.com/getRecentlyViewed/"+userName
+        const url = "https://black-cat-api.vercel.app/getRecentlyViewed/"+userName
         try {
             const request = await fetch(url)
             const response = await request.json()
@@ -59,7 +59,7 @@ export const ReadNow = () =>{
     }
 
     const updateRecentlyViewed = async (index) =>{
-        const url = "https://black-cat-api-render.onrender.com/updateRecentlyViewed"
+        const url = "https://black-cat-api.vercel.app/updateRecentlyViewed"
 
         if(index == null){
             recent.push(name+":"+chapter)
