@@ -53,12 +53,12 @@ export const CheckTitleUpdates = () =>{
         
 
         statusText.textContent = "Please wait while we update the titles. Do not close this page."
-        updatingListText.textcontent = "0% -- Currently fetching titles..."
+        updatingListText.textContent = "0% -- Currently fetching titles..."
         try {
             const request = await fetch('https://black-cat-api.vercel.app/allTitles')
             // const request = await fetch('http://localhost:3000/allTitles')
             const response = await request.json()
-            updatingListText.textcontent = "25% -- Titles fetched - "+ response.length
+            updatingListText.textContent = "25% -- Titles fetched - "+ response.length
             setManghwas(response)
         } catch (error) {
             console.log(error)
@@ -76,11 +76,11 @@ export const CheckTitleUpdates = () =>{
                 manghwaArray.push(arr)
             })
             const body = encodeURIComponent(manghwaArray.join("|"))
-            updatingListText.textcontent = "50% -- Checking title updates..."
+            updatingListText.textContent = "50% -- Checking title updates..."
             // const request = await fetch("http://localhost:5040/MHLastChapter/"+body)
             const request = await fetch("https://black-cat-api-render.onrender.com/MHLastChapter/"+body)
             const response = await request.json()
-            updatingListText.textcontent = "75% -- Checking updates complete..."
+            updatingListText.textContent = "75% -- Checking updates complete..."
             if(response.length > 0){
                 updateChapters(response)
             } else {
@@ -103,7 +103,7 @@ export const CheckTitleUpdates = () =>{
             body:JSONBody,
             headers:{"content-type":"application/json"}
         }
-        updatingListText.textcontent = "85% -- Updating - " + data.length + " title(s)"
+        updatingListText.textContent = "85% -- Updating - " + data.length + " title(s)"
         try {
             const request = await fetch('https://black-cat-api.vercel.app/updateChapters/',header)
             // const request = await fetch('http://localhost:3000/updateChapters/',header)
