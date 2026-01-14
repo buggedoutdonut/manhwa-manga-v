@@ -44,7 +44,7 @@ export const CheckTitleUpdates = () =>{
         const listLength = manghwas.length + 1
         try {
             const names = await manghwas.map(async(manghwa) =>{
-                const request = await fetch('https://black-cat-api.vercel.app/MHLastChapter/'+manghwa.code)
+                const request = await fetch('https://black-cat-api-render.onrender.com/MHLastChapter/'+manghwa.code)
                 updatingListText.textContent = "⏳ Currently Checking ("+manghwa.id+"/"+ listLength +") - "+manghwa.name
                 const response = await request.json() 
                     if(parseFloat(response) > parseFloat(manghwa.chapters)){
@@ -75,7 +75,7 @@ export const CheckTitleUpdates = () =>{
         }
 
         try {
-            const request = await fetch('https://black-cat-api-render.onrender.com/updateChapters',header)
+            const request = await fetch('https://black-cat-api.vercel.app/updateChapters',header)
         } catch (error) {
             console.log(error)
         }
