@@ -77,8 +77,8 @@ export const CheckTitleUpdates = () =>{
             })
             const body = encodeURIComponent(manghwaArray.join("|"))
             updatingListText.textContent = "50% -- Checking title updates..."
-            // const request = await fetch("http://localhost:5040/MHLastChapter/"+body)
-            const request = await fetch("https://black-cat-api-render.onrender.com/MHLastChapter/"+body)
+            const request = await fetch("http://localhost:5040/MHLastChapter/"+body)
+            // const request = await fetch("https://black-cat-api-render.onrender.com/MHLastChapter/"+body)
             const response = await request.json()
             updatingListText.textContent = "75% -- Checking updates complete..."
             if(response.length > 0){
@@ -93,6 +93,7 @@ export const CheckTitleUpdates = () =>{
     }
 
     const updateChapters = async (data) =>{
+        const updatingListText = document.getElementById("list")
         const body = {
             data:data
         }
