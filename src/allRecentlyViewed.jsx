@@ -60,6 +60,7 @@ export const AllRecentlyViewed = () =>{
                 setRecentChaptersCopy(chapters)
                 setManghwa(recentlyViewedDetails)
                 setManghwaCopy(recentlyViewedDetails)
+                console.log(recentlyViewedDetails)
            } catch (error) {
                 console.log(error)
            }
@@ -114,7 +115,6 @@ export const AllRecentlyViewed = () =>{
                     manghwa.length <= 0 && manghwa != undefined? <h3>No results.</h3>:
                     manghwa.map((title,index) =>{
                         const recentChapter = recentChapters[index]
-                        console.log(recentChapters[index])
                         return <CreateAllTitlesCards key={title.id} data={title} recentChapter={recentChapter}/>             
                     })
             }

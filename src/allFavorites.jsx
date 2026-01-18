@@ -35,6 +35,7 @@ export const AllFavorites = () =>{
            try {
                 const favoritesPromise = ids.map(async(id) =>{
                     const request = await fetch('https://black-cat-api.vercel.app/getTitleData/'+id)
+                    const response = await request.json()
                     return response[0]
                 })
 
@@ -93,7 +94,7 @@ export const AllFavorites = () =>{
             </div>
             <div className="border" />
             {
-                manghwa == undefined? <div className="loadingContainer"><img src={logo} className="loadingAnim" width="50"/><br/><h3>Loading titles..</h3></div>:
+                manghwa == undefined && favorites == undefined? <div className="loadingContainer"><img src={logo} className="loadingAnim" width="50"/><br/><h3>Loading titles..</h3></div>:
                 manghwa.length <= 0 && manghwa != undefined? <h3>No results.</h3>:
                 manghwa.map((title) =>{
                     return <CreateAllTitlesCards key={title.id} data={title} />
