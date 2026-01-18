@@ -34,7 +34,7 @@ export const AllFavorites = () =>{
            const ids = favorites.filter(id => id != "")
            try {
                 const favoritesPromise = ids.map(async(id) =>{
-                    const request = await fetch('https://black-cat-api.vercel.app/v1/getTitleData/'+id)
+                    const request = await fetch('https://black-cat-api.vercel.app/getTitleData/'+id)
                     return response[0]
                 })
 

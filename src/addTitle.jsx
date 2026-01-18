@@ -10,6 +10,7 @@ export const AddNewTitle = () =>{
 
     const userAccess = localStorage.getItem("userAccess")
     const navigator = useNavigate()
+    let allChapters
 
     //Validate if user has admin privilege
     useEffect(() =>{
@@ -61,9 +62,11 @@ export const AddNewTitle = () =>{
         })
 
         bodyObj["recent"] = currentDate
+        bodyObj["allChapters"] = allChapters
    
         const requestBody = JSON.stringify(bodyObj)
         const url = "https://black-cat-api.vercel.app/addtitle/"
+        // const url = "http://localhost:3000/addtitle/"
 
         const requestHeaders = {
             method:"POST",
@@ -99,6 +102,7 @@ export const AddNewTitle = () =>{
             console.log(response)
             title.value = response.title
             chapters.value = response.allchapters.slice(0)[0]
+            allChapters = response.allchapters.join(",")
             category.value = response.genre
             imgLink.value = response.imgLink
         } catch (error) {

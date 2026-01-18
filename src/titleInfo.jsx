@@ -58,7 +58,7 @@ export const TitleInfo = () => {
                         <CreateTitleInfoCard key={data.id} data={data} />}
 
                         {data == undefined? <></>:
-                        <CreateTitleInfoChapters key="Chapters" data={data.code} />}
+                        <CreateTitleInfoChapters key="Chapters" data={data.allChapters} code={code}/>}
                 </div>
             <Footer />
         </>

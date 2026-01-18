@@ -20,7 +20,7 @@ export const CheckTitleUpdates = () =>{
     const [updatedManghwas,setUpdatedManghwas] = useState()
     const [newUpdate,setNewUpdate] = useState()
     let manghwaArray = []
-    let updateStatus = ""
+    let updateStatus = 0
 
     const getTitles = async () =>{
         const button = document.getElementById("updateButton")
@@ -32,7 +32,7 @@ export const CheckTitleUpdates = () =>{
         
         let count = 1
         const textInterval = setInterval(() => {
-            if(updateStatus == "completed"){
+            if(updateStatus == 1){
                 clearInterval(textInterval)
             }
 
@@ -128,7 +128,7 @@ export const CheckTitleUpdates = () =>{
             statusText.textContent = "👍 All titles are currently up-to-date."
         }
         updatingListText.textContent = "Titles Checked - ("+listLength+"/"+listLength+")"
-        updateStatus = "completed"
+        updateStatus = 1
         button.textContent = "⟳ Update Complete."
     }
 

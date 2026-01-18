@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import "../css/titleInfo.css"
 import logo from "../assets/logo.png"
 
-export const CreateTitleInfoChapters = (data) =>{
+export const CreateTitleInfoChapters = ({data,code}) =>{
     const [chapterList,setChapterList] = useState([])
     const [chapters,setChapters] = useState()
     const [isReady,setIsReady] = useState(false)
@@ -12,12 +12,12 @@ export const CreateTitleInfoChapters = (data) =>{
     let lastChapter
 
     const getChapters = async() =>{
-        const url = "https://black-cat-api-render.onrender.com/getChapters/"+data.data
-
+        // const url = "https://black-cat-api-render.onrender.com/getChapters/"+data.data
         try {
-            const request = await fetch(url)
-            const response = await request.json()
-            setChapterList(response.allchapters)
+            // const request = await fetch(url)
+            // const response = await request.json()
+            const chapters = data.split(",")
+            setChapterList(chapters)
         } catch (error) {
             console.log(error)
         }
@@ -100,8 +100,11 @@ export const CreateTitleInfoChapters = (data) =>{
         //Create chapter buttons based on textcontent of the clicked button 
         for(i; i <= maxChapters - 1; i++){
             if(min - 1 < sortedChapterList[i] && max >= sortedChapterList[i]){ 
+
+                const link = '/readnow/'+code+'/'+sortedCh[i]
+                console.log(link)
                 const linkTo = document.createElement('a')
-                linkTo.href = '/readnow/'+data.data+'/'+sortedCh[i]
+                linkTo.href = link
 
                 const chNumBtn = document.createElement('button')
                 chNumBtn.id = min
@@ -140,7 +143,7 @@ export const CreateTitleInfoChapters = (data) =>{
 
     useEffect(() =>{
         if(sortedCh.length > 0){
-            localStorage.setItem(data.data,JSON.stringify(sortedCh))
+            localStorage.setItem(code,JSON.stringify(sortedCh))
         }
     },[sortedCh])
     

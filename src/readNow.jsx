@@ -10,19 +10,20 @@ import "./css/readNow.css"
 export const ReadNow = () =>{
     const {name,chapter} = useParams()
     const [images,setImages] = useState()
+    const [prev,setPrev] = useState()
+    const [next,setNext] = useState()
     let recent
     const userName = localStorage.getItem('userName')
-    const getChapters = JSON.parse(localStorage.getItem(name))
-    const current = getChapters.indexOf(parseFloat(chapter))
-    const prev = getChapters[current-1]
-    const next = getChapters[current+1]
-    const previousChapter = "/readnow/"+name+"/"+prev
-    const nextChapter = "/readnow/"+name+"/"+next
-    const prevA = document.querySelectorAll(".prev")
-    const nextA = document.querySelectorAll(".next")
+    let getChapters
+    let current
+    let previousChapter
+    let nextChapter
+    let prevA
+    let nextA
 
     const getAllImages = async() => {
-        const url = 'https://black-cat-api-render.onrender.com/getImages/'+name+'/'+chapter
+        // const url = 'https://black-cat-api-render.onrender.com/getImages/'+name+'/'+chapter
+        const url = 'http://localhost:5040/getImages/'+name+'/'+chapter
         try {
             const request = await fetch(url)
             const response = await request.json()
@@ -90,15 +91,34 @@ export const ReadNow = () =>{
 
     }
     
+    const getAllChapters = async() =>{
+        let chaptersLocalStorage = JSON.parse(localStorage.getItem(name))
+        if(chaptersLocalStorage != null || chaptersLocalStorage != undefined){
+            getChapters = JSON.parse(localStorage.getItem(name))
+        } else {
+            const url = 'https://black-cat-api-render.onrender.com/getRecentlyViewedManghwaDetails/'+name
+            try {
+                const request = await fetch(url)
+                const response = await request.json()
+                getChapters = response.allChapters.reverse()
+                localStorage.setItem(name,JSON.stringify(getChapters))
+            } catch (error) {
+                console.log(error)
+            }
+        }
 
+        current = getChapters.indexOf(parseFloat(chapter))
+        setPrev(getChapters[current-1])
+        setNext(getChapters[current+1])
 
-    useEffect(() =>{
-        getAllImages()
-        fetchRecentlyViewed()
-    },[])
+        if(prev != chapter){
+            setPrev(getChapters[current-1])
+        }
 
-
-     useEffect(() =>{
+        previousChapter = "/readnow/"+name+"/"+prev
+        nextChapter = "/readnow/"+name+"/"+next
+        prevA = document.querySelectorAll(".prev")
+        nextA = document.querySelectorAll(".next")
 
         if(getChapters.length - 1 != current){
             nextA.forEach((a) =>{
@@ -115,8 +135,16 @@ export const ReadNow = () =>{
                 a.append(prevButton)
             })
         }
-        console.log(current)
-    },[getChapters])
+
+    }
+    
+
+
+    useEffect(() =>{
+        getAllChapters()
+        getAllImages()
+        fetchRecentlyViewed()
+    },[])
 
     console.log(images)
     return(
@@ -124,8 +152,8 @@ export const ReadNow = () =>{
             <Header />
                 <div className="imagesContainer">
                     <div className="buttonsContainer">
-                        <a href={previousChapter} className="prev"></a>
-                        <a href={nextChapter} className="next"></a>
+                        <a href={"/readnow/"+name+"/"+prev} className="prev"></a>
+                        <a href={"/readnow/"+name+"/"+next} className="next"></a>
                     </div>                   
                     {
                         images == null ? <div className="loadingContainer"><img src={logo} width="100" height="100" className="loadingAnim" /><p>Please wait while we load the images...</p></div>:
@@ -134,8 +162,8 @@ export const ReadNow = () =>{
                         })
                     }
                     <div className="buttonsContainer">
-                        <Link to={previousChapter} className="prev"></Link>
-                        <Link to={nextChapter} className="next"></Link>
+                        <a href={"/readnow/"+name+"/"+prev} className="prev"></a>
+                        <a href={"/readnow/"+name+"/"+next} className="next"></a>
                     </div>  
                 </div>
             <Footer />

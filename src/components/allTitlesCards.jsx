@@ -8,7 +8,7 @@ export const CreateAllTitlesCards = ({data,recentChapter}) =>{
     let chText = "Chapters - "+title.chapters
     let name = title.name
     if(title.name.length > 16){
-        name = title.name.slice(0,17) + ".."
+        name = title.name.slice(0,14) + ".."
     }
 
 

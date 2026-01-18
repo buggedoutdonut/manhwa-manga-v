@@ -34,7 +34,7 @@
 }
 
 .titleBar{
-    padding: 5px;
+    padding: 3px;
     background-color: rgb(117, 94, 245);
     margin-right: 10px;
 }
@@ -187,11 +187,9 @@
     .titleInfoMainContainer{
         width:100%;
     }
-    .titleBar{
-        display:none;
-    }
     .titleText{
-        text-align: justify;
+        font-size:1.3rem;
+        text-align: center;
     }
     .miniDetailsContainer{
         justify-content: center;
