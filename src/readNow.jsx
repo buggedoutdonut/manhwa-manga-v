@@ -22,8 +22,8 @@ export const ReadNow = () =>{
     let nextA
 
     const getAllImages = async() => {
-        // const url = 'https://black-cat-api-render.onrender.com/getImages/'+name+'/'+chapter
-        const url = 'http://localhost:5040/getImages/'+name+'/'+chapter
+        const url = 'https://black-cat-api-render.onrender.com/getImages/'+name+'/'+chapter
+        // const url = 'http://localhost:5040/getImages/'+name+'/'+chapter
         try {
             const request = await fetch(url)
             const response = await request.json()
