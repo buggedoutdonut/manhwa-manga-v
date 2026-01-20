@@ -101,6 +101,7 @@
 }
 
 .darkModeStatus{
+    font-size: .9rem;
     color:red;
 }
 
@@ -109,8 +110,20 @@
 }
 
 #darkModeButton{
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border:0;
+    font-weight:bold;
+    font-size:1rem;
+    margin:10px;
+    padding:5px;
+    border-radius: 5px;
 }
+
+#darkModeText{
+    font-size:1rem;
+}
+
+
+
 
 @keyframes darkModeOn{
     from{

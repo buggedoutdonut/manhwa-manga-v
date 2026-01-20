@@ -12,6 +12,7 @@ export const ReadNow = () =>{
     const [images,setImages] = useState()
     const [prev,setPrev] = useState()
     const [next,setNext] = useState()
+    const [isLoaded,setIsLoaded] = useState(false)
     let recent
     const userName = localStorage.getItem('userName')
     let getChapters
@@ -20,10 +21,14 @@ export const ReadNow = () =>{
     let nextChapter
     let prevA
     let nextA
+    let loadedImgs = 0
+
+
+    let mImg = document.querySelector('img[id="manhwaimg"]')
 
     const getAllImages = async() => {
-        const url = 'https://black-cat-api-render.onrender.com/getImages/'+name+'/'+chapter
-        // const url = 'http://localhost:5040/getImages/'+name+'/'+chapter
+        // const url = 'https://black-cat-api-render.onrender.com/getImages/'+name+'/'+chapter
+        const url = 'http://localhost:5040/getImages/'+name+'/'+chapter
         try {
             const request = await fetch(url)
             const response = await request.json()
@@ -146,7 +151,16 @@ export const ReadNow = () =>{
         fetchRecentlyViewed()
     },[])
 
-    console.log(images)
+    let checkIfLoaded = setInterval(() =>{
+        const mImg = document.querySelector('img[id="manhwaimg"]')
+            if(mImg != null){
+                const loadingContainer = document.querySelector(".loadingContainer")
+                const placeholder = document.querySelector(".imagePlaceholder")
+                loadingContainer.remove()
+                placeholder.remove()
+            }
+    },1000)
+    
     return(
         <>
             <Header />
@@ -156,11 +170,15 @@ export const ReadNow = () =>{
                         <a href={"/readnow/"+name+"/"+next} className="next"></a>
                     </div>                   
                     {
-                        images == null ? <div className="loadingContainer"><img src={logo} width="100" height="100" className="loadingAnim" /><p>Please wait while we load the images...</p></div>:
+                        images == null ? null:
                         images.map((src) =>{
+                            loadedImgs+= 1
                             return <LoadImages key={src} img={src} />
                         })
                     }
+                    
+                    <div className="loadingContainer"><img src={logo} width="100" height="100" className="loadingAnim" /><p>Please wait while we load the images...</p></div>
+                    <div className="imagePlaceholder"></div>
                     <div className="buttonsContainer">
                         <a href={"/readnow/"+name+"/"+prev} className="prev"></a>
                         <a href={"/readnow/"+name+"/"+next} className="next"></a>

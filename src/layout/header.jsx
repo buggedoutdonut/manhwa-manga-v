@@ -71,7 +71,6 @@ export const Header = () => {
             darkModeLabel.textContent = "On"
             darkModeLabel.setAttribute("style","color:green;")
             darkModeEmoji.textContent = "🌚"
-            darkModeButton.setAttribute("style","color:white;")
             menu.style.backgroundColor = "rgb(24, 24, 24)"
             closeMenu.style.color ="white"
             body.style.animation = "darkModeOn .5s forwards"
@@ -96,7 +95,6 @@ export const Header = () => {
             darkModeLabel.textContent = "On"
             darkModeLabel.setAttribute("style","color:green;")
             darkModeEmoji.textContent = "🌚"
-            darkModeButton.setAttribute("style","color:white;")
             menu.style.backgroundColor = "rgb(24, 24, 24)"
             closeMenu.style.color ="white"
             body.style.animation = "darkModeOn .5s forwards"
@@ -143,7 +141,7 @@ export const Header = () => {
                 <img src={logo} className="logo"/>
             </div></Link>
             <div className="navContainer">
-                <button className="darkMode" id="darkModeButton" onClick={DarkMode}><a id="darkModeEmoji">🌝</a>Dark Mode: <a className="darkModeStatus" id="darkModeLabel">Off</a></button>
+            
                 <button className="menuButton" onClick={showMenu}><img src={menu} /></button>
             </div>
             <div className="menu" id="menu">
@@ -157,6 +155,7 @@ export const Header = () => {
                     <Link to="/updatetitles"><button className="subMenuButtons" id="updateTitles">🗘 Check title updates</button></Link>
                     <Link to="/addmember"><button className="subMenuButtons" id="addNewUsers">☻ Add new user</button></Link>
                     <button className="subMenuButtons" onClick={logOut} id="logOut">⏻ Logout</button>
+                    <button className="darkMode" id="darkModeButton" onClick={DarkMode}><a id="darkModeEmoji">🌝 &nbsp;</a><span id="darkModeText">Dark Mode: </span><a className="darkModeStatus" id="darkModeLabel">Off</a></button>
                     <p className="accessText">★ {checkAccess.toUpperCase()}</p>
                 </div>
                 
