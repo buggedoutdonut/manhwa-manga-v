@@ -31,8 +31,9 @@ export const CheckTitleUpdates = () =>{
         button.style.animation = "buttonAnim .5s ease-in-out infinite alternate"
         
         let count = 1
-        const textInterval = setInterval(() => {
-            if(updateStatus == 1){
+        let textInterval = setInterval(() => {
+            if(updateStatus == "1"){
+                button.textContent = "⟳ Update Complete."
                 clearInterval(textInterval)
             }
 
@@ -128,7 +129,7 @@ export const CheckTitleUpdates = () =>{
             statusText.textContent = "👍 All titles are currently up-to-date."
         }
         updatingListText.textContent = "Titles Checked - ("+listLength+"/"+listLength+")"
-        updateStatus = 1
+        updateStatus = "1"
         button.textContent = "⟳ Update Complete."
     }
 
