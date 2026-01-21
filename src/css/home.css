@@ -48,6 +48,12 @@
     padding:6px;
 }
 
+.loadingHome{
+    margin:auto;
+    text-align: center;
+}
+
+
 @media (max-width:900px){
     .titlesContainer{
         justify-content: center;

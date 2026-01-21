@@ -5,15 +5,26 @@ import { Footer } from "./layout/footer"
 import { Header } from "./layout/header"
 import logo from "./assets/logo.png"
 
+
 export const AllFavorites = () =>{
     const [manghwa,setManghwa] = useState()
     const [manghwaCopy,setManghwaCopy] = useState()
     const [isRefreshed, setIsRefreshed] = useState(false)
     const [favorites,setFavorites] = useState()
     const [favoritesCopy,setFavoritesCopy] = useState()
+    const [searchActive,setSearchActive] = useState(false)
+    const [isLoaded,setIsLoaded] = useState(false)
     const userName = localStorage.getItem('userName')
     let favoritesDetailsArray = []
     let searchArray = []
+
+    const checkContainer = setInterval(() => {
+        let titleContainer = document.querySelector(".titleContainer")
+        if(titleContainer != null || setIsLoaded == true){
+            clearInterval(checkContainer)
+            setIsLoaded(true)
+        }
+    },100)
 
     const fetchFavorites = async() =>{
         const url = "https://black-cat-api.vercel.app/getFavorites/"+userName
@@ -66,8 +77,14 @@ export const AllFavorites = () =>{
                 searchArray.push(title)
             }
         })
+        if(searchValue.length > 0){
+            setSearchActive(true)
+        } else {
+            setSearchActive(false)
+        }
         setManghwa(searchArray)
     }
+        
 
     useEffect(() =>{
         fetchFavorites()
@@ -94,11 +111,14 @@ export const AllFavorites = () =>{
             </div>
             <div className="border" />
             {
-                manghwa == undefined && favorites == undefined? <div className="loadingContainer"><img src={logo} className="loadingAnim" width="50"/><br/><h3>Loading titles..</h3></div>:
-                manghwa.length <= 0 && manghwa != undefined? <h3>No results.</h3>:
+                manghwa == undefined && favorites == undefined && searchActive == false && isLoaded == false? <div className="loadingHome"><img src={logo} className="loadingAnim" width="50"/><br/><h3>Loading titles..</h3></div>:
+                manghwa.length <= 0 && searchActive == true? <h3>No results.</h3>:
                 manghwa.map((title) =>{
                     return <CreateAllTitlesCards key={title.id} data={title} />
                 })
+            }
+            {
+                searchActive == false && isLoaded == false ? <h3 className="titleLoadingText">Please wait while we load your ⭐Favorites.</h3>:<></>
             }
         </div>
         <Footer />

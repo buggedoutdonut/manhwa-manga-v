@@ -142,11 +142,6 @@
     animation: loading 2s ease-in-out infinite;
 }
 
-.loadingContainer{
-    margin:auto;
-    text-align: center;
-}
-
 .titleLoading{
     margin-top:30%;
     border-radius:100%;

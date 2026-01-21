@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import "../css/createCards.css"
 import { Link } from "react-router"
+import logo from "../assets/logo.png"
 
 
 export const CreateCards = (type) =>{
@@ -72,6 +73,6 @@ export const CreateCards = (type) =>{
                         <span class="title" title={title}>{name}</span>
                         <span class="chapters">{subTitle}</span></div>
                         </Link>
-        }):console.log("")      
+        }):<div className="loadingHome"><img src={logo} className="loadingAnim" width="50"/><br/><span className="titleLoadingText">Loading details...</span></div>    
     )
 }
