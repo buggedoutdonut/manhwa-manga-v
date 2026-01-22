@@ -9,7 +9,7 @@
     margin-top:4rem;
     margin-bottom:4rem;;
     gap:5px;
-    min-height:15rem;
+    min-height:20rem;
 }
 
 .border{
@@ -52,6 +52,10 @@
 
 #resultText{
     display:none;
+}
+
+#favoritesLoadingText{
+    text-align: center;
 }
 
 @media (max-width:900px){

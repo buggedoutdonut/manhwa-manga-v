@@ -128,7 +128,7 @@ export const Header = () => {
 
     const logOut = () =>{
         const logOutButton = document.getElementById("logOut")
-        logOutButton.textContent = "⏻ Logging out..."
+        logOutButton.textContent = "➜] Logging out..."
         logOutButton.style.color = "red"
         localStorage.removeItem("isLoggedIn")
         localStorage.removeItem("userName")
@@ -150,11 +150,11 @@ export const Header = () => {
                     <h2>👋 Welcome, {userName}</h2>
                     <Link to="/all/favorites"><button className="subMenuButtons">⛉ Favorites</button></Link>
                     <Link to="/all/recentlyviewed"><button className="subMenuButtons">👁 Recently Viewed</button></Link>
-                    <Link to="/all"><button className="subMenuButtons" id="addNewUser">🕮 View all Manghwa</button></Link>
+                    <Link to="/all"><button className="subMenuButtons" id="addNewUser">𝐌 View all Manghwa</button></Link>
                     <Link to="/addtitle"><button className="subMenuButtons" id="addNewTitle">✚ Add new title</button></Link>
                     <Link to="/updatetitles"><button className="subMenuButtons" id="updateTitles">🗘 Check title updates</button></Link>
                     <Link to="/addmember"><button className="subMenuButtons" id="addNewUsers">☻ Add new user</button></Link>
-                    <button className="subMenuButtons" onClick={logOut} id="logOut">⏻ Logout</button>
+                    <button className="subMenuButtons" onClick={logOut} id="logOut">➜] Logout</button>
                     <button className="darkMode" id="darkModeButton" onClick={DarkMode}><a id="darkModeEmoji">🌝 &nbsp;</a><span id="darkModeText">Dark Mode: </span><a className="darkModeStatus" id="darkModeLabel">Off</a></button>
                     <p className="accessText">★ {checkAccess.toUpperCase()}</p>
                 </div>

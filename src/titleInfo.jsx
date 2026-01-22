@@ -54,7 +54,7 @@ export const TitleInfo = () => {
         <>
             <Header />
                 <div className="titleInfoMainContainer">              
-                        {data == undefined? <div className="loadingContainer"><img src={loadingImg} className="titleLoading"></img><h3 className="titleLoadingText">Please wait while we load the details.</h3></div>:
+                        {data == undefined? <div className="loadingContainer"><img src={loadingImg} className="titleLoading"></img><h3 className="titleLoadingText">⏳ Please wait while we load the details. ⏳</h3></div>:
                         <CreateTitleInfoCard key={data.id} data={data} />}
 
                         {data == undefined? <></>:

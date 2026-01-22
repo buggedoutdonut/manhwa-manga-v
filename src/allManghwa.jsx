@@ -62,7 +62,7 @@ export const AllManghwa = () =>{
             </div>
             <div className="border" />
             {
-                manghwa == undefined? <div className="loadingContainer"><img src={logo} className="loadingAnim" width="50"/><br/><h3>Loading titles..</h3></div>:
+                manghwa == undefined? <div className="loadingContainer"><img src={logo} className="loadingAnim" width="50"/><br/><h3 className="titleLoadingText">Loading titles..</h3></div>:
                 manghwa.length <= 0 && manghwa != undefined? <h3>No results.</h3>:
                 manghwa.map((title) =>{
                     return <CreateAllTitlesCards key={title.id} data={title} />

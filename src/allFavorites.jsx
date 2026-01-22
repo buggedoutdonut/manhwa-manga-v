@@ -118,7 +118,7 @@ export const AllFavorites = () =>{
                 })
             }
             {
-                searchActive == false && isLoaded == false ? <h3 className="titleLoadingText">Please wait while we load your ⭐Favorites.</h3>:<></>
+                searchActive == false && isLoaded == false ? <h3 className="titleLoadingText" id="favoritesLoadingText">Please wait while we load your ⭐Favorites.</h3>:<></>
             }
         </div>
         <Footer />
